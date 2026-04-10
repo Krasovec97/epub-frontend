@@ -1,0 +1,41 @@
+{
+  "HomePage": {
+    "title": "Papirus",
+    "subtitle": "Hello — Bootstrap and localisation are working.",
+    "hero": {
+      "title": "Turn PDFs and images into EPUB",
+      "subtitle": "Upload a PDF or a set of screenshots. We run OCR and structure the content into a clean, readable EPUB file.",
+      "cta": "Upload now"
+    },
+    "howItWorks": {
+      "heading": "How it works",
+      "step1": {
+        "title": "Upload",
+        "desc": "Drop a PDF or images (PNG, JPG, WebP) into the upload zone."
+      },
+      "step2": {
+        "title": "We process",
+        "desc": "Our OCR pipeline extracts text, preserves structure, and builds the EPUB."
+      },
+      "step3": {
+        "title": "Download",
+        "desc": "Pay for the pages processed and download your EPUB immediately."
+      }
+    },
+    "upload": {
+      "heading": "Upload your file",
+      "dropPrompt": "Drag & drop a PDF or images here",
+      "or": "or",
+      "browse": "Browse files",
+      "acceptedFormats": "Accepted: PDF, PNG, JPG, WebP",
+      "fileSelected": "Selected: {filename}"
+    },
+    "pricing": {
+      "heading": "Simple pricing",
+      "price": "0.15 EUR",
+      "perPage": "per page",
+      "minimumNote": "Minimum charge: 20 pages (3.00 EUR)",
+      "paymentNote": "Payment via Stripe after processing. No account required."
+    }
+  }
+}

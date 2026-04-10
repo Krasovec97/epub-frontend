@@ -1,49 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap');
+
+/* ── Tokens ── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg:          #070605;
+  --surface:     #0e0c0a;
+  --card:        #161310;
+  --paper:       #f1e9d6;
+  --paper-mid:   #a89880;
+  --paper-faint: #292420;
+  --gold:        #c8a45a;
+  --gold-dim:    rgba(200, 164, 90, 0.09);
+  --gold-border: rgba(200, 164, 90, 0.28);
+  --serif:       'Cormorant Garamond', Georgia, serif;
+  --mono:        'DM Mono', 'Courier New', monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-  height: 100%;
+  font-size: 16px;
+  scroll-behavior: smooth;
 }
 
-html,
 body {
-  max-width: 100vw;
+  background: var(--bg);
+  color: var(--paper);
+  font-family: var(--serif);
+  font-weight: 300;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100dvh;
   overflow-x: hidden;
 }
 
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+img,
+svg {
+  display: block;
 }
 
-* {
-  box-sizing: border-box;
+button {
+  cursor: pointer;
+  font-family: inherit;
+  background: none;
+  border: none;
   padding: 0;
-  margin: 0;
+  color: inherit;
 }
 
 a {
-  color: inherit;
+  color: var(--gold);
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+a:hover {
+  text-decoration: underline;
 }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar           { width: 4px; }
+::-webkit-scrollbar-track     { background: var(--bg); }
+::-webkit-scrollbar-thumb     { background: var(--paper-faint); }

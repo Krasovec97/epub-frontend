@@ -1,0 +1,119 @@
+/* ── Hero ── */
+.hero {
+  min-height: calc(100dvh - 58px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 2rem;
+  border-bottom: 1px solid var(--paper-faint);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 65% 55% at 50% 45%,
+    rgba(200, 164, 90, 0.055) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 3rem;
+  background: linear-gradient(to bottom, var(--gold-border), transparent);
+}
+
+.heroInner {
+  max-width: 860px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2.75rem;
+  opacity: 0.75;
+}
+
+.heroTitle {
+  font-family: var(--serif);
+  font-size: clamp(3.2rem, 8.5vw, 7.5rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  color: var(--paper);
+  margin-bottom: 2.25rem;
+}
+
+.heroSub {
+  font-family: var(--serif);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--paper-mid);
+  max-width: 520px;
+  margin: 0 auto 3rem;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+.heroCta {
+  display: inline-block;
+  padding: 0.8rem 2.5rem;
+  border: 1px solid var(--gold-border);
+  color: var(--gold);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.22s, border-color 0.22s;
+}
+
+.heroCta:hover {
+  background: var(--gold-dim);
+  border-color: var(--gold);
+  text-decoration: none;
+  color: var(--gold);
+}
+
+/* ── Section shells ── */
+.uploadSection {
+  border-bottom: 1px solid var(--paper-faint);
+}
+
+.pricingSection {
+  background: var(--surface);
+}
+
+/* ── Shared section inner ── */
+.sectionInner {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+}
+
+.sectionHeading {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--paper-mid);
+  text-align: center;
+  margin-bottom: 3rem;
+}

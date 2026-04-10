@@ -1,0 +1,41 @@
+{
+  "HomePage": {
+    "title": "Papirus",
+    "subtitle": "Pozdravljeni — Bootstrap in lokalizacija delujeta.",
+    "hero": {
+      "title": "Pretvorite PDF-e in slike v EPUB",
+      "subtitle": "Naložite PDF ali skupek posnetkov zaslona. Izvedemo OCR in vsebino strukturiramo v čisto, berljivo datoteko EPUB.",
+      "cta": "Naloži zdaj"
+    },
+    "howItWorks": {
+      "heading": "Kako deluje",
+      "step1": {
+        "title": "Naloži",
+        "desc": "Povlecite PDF ali slike (PNG, JPG, WebP) v območje za nalaganje."
+      },
+      "step2": {
+        "title": "Obdelava",
+        "desc": "Naš OCR cevovod izvleče besedilo, ohrani strukturo in zgradi EPUB."
+      },
+      "step3": {
+        "title": "Prenesi",
+        "desc": "Plačajte za obdelane strani in takoj prenesite svojo datoteko EPUB."
+      }
+    },
+    "upload": {
+      "heading": "Naložite datoteko",
+      "dropPrompt": "Sem povlecite PDF ali slike",
+      "or": "ali",
+      "browse": "Poiščite datoteke",
+      "acceptedFormats": "Sprejeto: PDF, PNG, JPG, WebP",
+      "fileSelected": "Izbrano: {filename}"
+    },
+    "pricing": {
+      "heading": "Preprosta cena",
+      "price": "0,15 EUR",
+      "perPage": "na stran",
+      "minimumNote": "Najmanjši strošek: 20 strani (3,00 EUR)",
+      "paymentNote": "Plačilo prek Stripe po obdelavi. Račun ni potreben."
+    }
+  }
+}

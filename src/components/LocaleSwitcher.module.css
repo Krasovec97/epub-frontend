@@ -1,0 +1,40 @@
+.switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.sep {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--paper-faint);
+  margin: 0 0.35rem;
+  user-select: none;
+}
+
+.btn {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--paper-mid);
+  padding: 0.3rem 0.45rem;
+  transition: color 0.18s;
+  text-transform: uppercase;
+}
+
+.btn:hover:not(:disabled) {
+  color: var(--paper);
+}
+
+.btn:disabled {
+  cursor: default;
+}
+
+.active {
+  color: var(--gold);
+}
