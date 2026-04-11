@@ -4,7 +4,7 @@
     "subtitle": "Pozdravljeni — Bootstrap in lokalizacija delujeta.",
     "hero": {
       "title": "Pretvorite PDF-e in slike v EPUB",
-      "subtitle": "Naložite PDF ali skupek posnetkov zaslona. Izvedemo OCR in vsebino strukturiramo v čisto, berljivo datoteko EPUB.",
+      "subtitle": "Naložite PDF ali skupek posnetkov zaslona. Izvedemo optično branje in vsebino strukturiramo v čisto, berljivo datoteko EPUB.",
       "cta": "Naloži zdaj"
     },
     "howItWorks": {
@@ -14,12 +14,12 @@
         "desc": "Povlecite PDF ali slike (PNG, JPG, WebP) v območje za nalaganje."
       },
       "step2": {
-        "title": "Obdelava",
-        "desc": "Naš OCR cevovod izvleče besedilo, ohrani strukturo in zgradi EPUB."
+        "title": "Plačaj",
+        "desc": "Plačajte glede na število strani in varno plačajte prek Stripe."
       },
       "step3": {
-        "title": "Prenesi",
-        "desc": "Plačajte za obdelane strani in takoj prenesite svojo datoteko EPUB."
+        "title": "Prejmi",
+        "desc": "Datoteko pretvorimo v EPUB in jo pošljemo neposredno na vaš e-poštni naslov."
       }
     },
     "upload": {
@@ -28,14 +28,43 @@
       "or": "ali",
       "browse": "Poiščite datoteke",
       "acceptedFormats": "Sprejeto: PDF, PNG, JPG, WebP",
-      "fileSelected": "Izbrano: {filename}"
+      "fileSelected": "Izbrano: {filename}",
+      "submit": "Pretvori v EPUB",
+      "uploading": "Nalaganje\u2026",
+      "uploadError": "Nalaganje ni uspelo. Poskusite znova."
     },
     "pricing": {
       "heading": "Preprosta cena",
       "price": "0,15 EUR",
       "perPage": "na stran",
       "minimumNote": "Najmanjši strošek: 20 strani (3,00 EUR)",
-      "paymentNote": "Plačilo prek Stripe po obdelavi. Račun ni potreben."
+      "paymentNote": "Uporabniški račun ni potreben."
     }
+  },
+  "ConvertPage": {
+    "title": "Pretvorba",
+    "step": "{current} / {total}",
+    "summary": {
+      "heading": "Vaša datoteka",
+      "pages": "{count} strani",
+      "price": "{amount} EUR",
+      "minimumNote": "Uporabljen minimum 20 strani",
+      "continue": "Naprej"
+    },
+    "billing": {
+      "heading": "Plačilo",
+      "emailLabel": "E-poštni naslov",
+      "emailPlaceholder": "vas@primer.com",
+      "pay": "Plačaj s Stripe",
+      "paying": "Preusmerjanje\u2026",
+      "back": "Nazaj",
+      "error": "Prišlo je do napake. Poskusite znova."
+    },
+    "confirmation": {
+      "heading": "Zaključeno",
+      "body": "Plačilo prejeto. Obdelava se je začela. Datoteko EPUB boste prejeli na {email}.",
+      "note": "Stran lahko zaprete."
+    },
+    "notFound": "Seja ni najdena."
   }
 }

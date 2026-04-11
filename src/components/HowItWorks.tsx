@@ -1,16 +1,16 @@
 import styles from "./HowItWorks.module.css";
 
-type Step = {
+interface Step {
   title: string;
   desc: string;
-};
+}
 
-type Props = {
+interface HowItWorksProps {
   heading: string;
   steps: [Step, Step, Step];
-};
+}
 
-export default function HowItWorks({ heading, steps }: Props) {
+export default function HowItWorks({ heading, steps }: HowItWorksProps) {
   return (
     <section className={styles.section}>
       <div className={styles.inner}>

@@ -10,7 +10,7 @@ export default async function NavBar() {
       <div className={styles.inner}>
         <span className={styles.brand}>
           <span className={styles.brandMark} aria-hidden="true">◆</span>
-          {t("title")}
+          <a href="/" className={"text-decoration-none text-white"}>{t("title")}</a>
         </span>
         <LocaleSwitcher />
       </div>

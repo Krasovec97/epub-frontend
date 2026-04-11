@@ -1,0 +1,167 @@
+.stepper {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.stepIndicator {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--paper-faint);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--gold-border);
+  padding: 2.5rem 2rem;
+}
+
+.heading {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--paper);
+  margin-bottom: 1.75rem;
+  letter-spacing: 0.02em;
+}
+
+/* Summary data list */
+.dataList {
+  margin-bottom: 1.5rem;
+}
+
+.dataRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--paper-faint);
+}
+
+.dataRow:last-child {
+  border-bottom: none;
+}
+
+.dataLabel {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper-mid);
+}
+
+.dataValue {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--paper);
+}
+
+/* Note text */
+.note {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  color: var(--paper-faint);
+  margin-bottom: 1.5rem;
+}
+
+/* Billing form */
+.label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper-mid);
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 0.85rem;
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  color: var(--paper);
+  background: var(--surface);
+  border: 1px solid var(--gold-border);
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 1.5rem;
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: var(--paper-faint);
+}
+
+.input:focus {
+  border-color: var(--gold);
+}
+
+/* Buttons */
+.primaryBtn {
+  display: block;
+  width: 100%;
+  padding: 0.85rem 2rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.primaryBtn:hover {
+  background: #d4b06a;
+}
+
+.primaryBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.backBtn {
+  display: block;
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.65rem 1rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--paper-mid);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.18s;
+  text-align: center;
+}
+
+.backBtn:hover {
+  color: var(--paper);
+}
+
+/* Error text */
+.errorText {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  color: #c06060;
+  margin-bottom: 1rem;
+}
+
+/* Confirmation body */
+.body {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--paper-mid);
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}

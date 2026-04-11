@@ -1,12 +1,12 @@
 import styles from "./PricingCard.module.css";
 
-type Props = {
+interface PricingCardProps {
   heading: string;
   price: string;
   perPage: string;
   minimumNote: string;
   paymentNote: string;
-};
+}
 
 export default function PricingCard({
   heading,
@@ -14,7 +14,7 @@ export default function PricingCard({
   perPage,
   minimumNote,
   paymentNote,
-}: Props) {
+}: PricingCardProps) {
   return (
     <div className={styles.card}>
       <p className={styles.heading}>{heading}</p>

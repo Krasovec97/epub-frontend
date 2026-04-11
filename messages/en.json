@@ -4,7 +4,7 @@
     "subtitle": "Hello — Bootstrap and localisation are working.",
     "hero": {
       "title": "Turn PDFs and images into EPUB",
-      "subtitle": "Upload a PDF or a set of screenshots. We run OCR and structure the content into a clean, readable EPUB file.",
+      "subtitle": "Upload a PDF or a set of screenshots. We run optical reading and structure the content into a clean, readable EPUB file.",
       "cta": "Upload now"
     },
     "howItWorks": {
@@ -14,12 +14,12 @@
         "desc": "Drop a PDF or images (PNG, JPG, WebP) into the upload zone."
       },
       "step2": {
-        "title": "We process",
-        "desc": "Our OCR pipeline extracts text, preserves structure, and builds the EPUB."
+        "title": "Pay",
+        "desc": "See the page count, enter your email, and pay securely via Stripe."
       },
       "step3": {
-        "title": "Download",
-        "desc": "Pay for the pages processed and download your EPUB immediately."
+        "title": "Receive",
+        "desc": "We convert your file to EPUB and send it straight to your email."
       }
     },
     "upload": {
@@ -28,7 +28,10 @@
       "or": "or",
       "browse": "Browse files",
       "acceptedFormats": "Accepted: PDF, PNG, JPG, WebP",
-      "fileSelected": "Selected: {filename}"
+      "fileSelected": "Selected: {filename}",
+      "submit": "Convert to EPUB",
+      "uploading": "Uploading\u2026",
+      "uploadError": "Upload failed. Please try again."
     },
     "pricing": {
       "heading": "Simple pricing",
@@ -37,5 +40,31 @@
       "minimumNote": "Minimum charge: 20 pages (3.00 EUR)",
       "paymentNote": "Payment via Stripe after processing. No account required."
     }
+  },
+  "ConvertPage": {
+    "title": "Convert",
+    "step": "{current} / {total}",
+    "summary": {
+      "heading": "Your file",
+      "pages": "{count} pages",
+      "price": "{amount} EUR",
+      "minimumNote": "20-page minimum applied",
+      "continue": "Continue"
+    },
+    "billing": {
+      "heading": "Billing",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "you@example.com",
+      "pay": "Pay with Stripe",
+      "paying": "Redirecting\u2026",
+      "back": "Back",
+      "error": "Something went wrong. Please try again."
+    },
+    "confirmation": {
+      "heading": "All done",
+      "body": "Payment received. Processing has started. You'll receive your EPUB at {email} shortly.",
+      "note": "You can close this page."
+    },
+    "notFound": "Session not found."
   }
 }
