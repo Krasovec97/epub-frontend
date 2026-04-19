@@ -107,6 +107,26 @@
   padding: 6rem 2rem;
 }
 
+.mobileCta {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 1.1rem 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--bg);
+  border: 1px solid var(--gold);
+  text-decoration: none;
+}
+
+.mobileCta:hover {
+  text-decoration: none;
+  color: var(--bg);
+}
+
 .sectionHeading {
   font-family: var(--mono);
   font-size: 0.65rem;

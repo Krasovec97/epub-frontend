@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Frontend for EPUB ebook processing. The Brand name is Papirus. It is a web-based application that allows users to upload EPUB files and process them.
+Frontend for EPUB ebook processing. The Brand name is Pergament. It is a web-based application that allows users to upload EPUB files and process them.
 
-The frontend is built with Next.js 16 and React 19. The domain will be papirus.si.
+The frontend is built with Next.js 16 and React 19. The domain will be pergament.si.
 
 Core backend capabilities: 
 - EPUB parsing (EbookLib)
@@ -27,12 +27,11 @@ The user can then download the processed EPUB file, after payments.
 - The price is 0.15 EUR per page.
 
 ### MVP features
-- Upload EPUB file
-- Process EPUB file
-- Download processed EPUB file
-- Display processed EPUB file in web browser
-- Payments via Stripe
-- AVOID user accounts for now.
+- Mobile-only scan flow: user takes one photo per page using the device camera with a fixed 1:√2 crop guide overlay. Cropped JPEGs are POSTed to `/api/upload` as a single multipart request (`files` field, repeated).
+- Desktop shows a QR-code handoff (`DesktopHandoff`) pointing at `/scan`; it does not attempt to capture.
+- Payments via Stripe after scanning (reuses `/convert/{sessionId}` flow).
+- Backend emails the finished EPUB; no downloads in the frontend.
+- AVOID user accounts.
 
 ## Commands
 

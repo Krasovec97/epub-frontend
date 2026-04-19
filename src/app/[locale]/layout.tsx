@@ -8,7 +8,7 @@ import NavBar from "@/components/NavBar";
 import "../globals.css";
 
 export const metadata: Metadata = {
-  title: "Papirus",
+  title: "Pergament",
   description: "Transform PDFs and images into clean, readable EPUB files via OCR.",
 };
 

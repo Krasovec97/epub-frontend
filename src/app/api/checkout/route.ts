@@ -7,6 +7,31 @@ function getStripe() {
   return new Stripe(key);
 }
 
+function resolveBaseUrl(request: Request): string | null {
+  const envUrl = process.env.NEXT_PUBLIC_BASE_URL?.trim();
+  if (envUrl) {
+    try {
+      return new URL(envUrl).origin;
+    } catch {
+      // fall through to header-derived URL
+    }
+  }
+
+  const headers = request.headers;
+  const forwardedHost = headers.get("x-forwarded-host");
+  const host = forwardedHost ?? headers.get("host");
+  if (!host) return null;
+
+  const forwardedProto = headers.get("x-forwarded-proto");
+  const proto =
+    forwardedProto?.split(",")[0].trim() ??
+    (host.startsWith("localhost") || host.startsWith("127.0.0.1")
+      ? "http"
+      : "https");
+
+  return `${proto}://${host}`;
+}
+
 export async function POST(request: Request) {
   let body: {
     sessionId: string;
@@ -30,7 +55,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = resolveBaseUrl(request);
   if (!baseUrl) {
     return NextResponse.json(
       { error: "Server misconfiguration" },

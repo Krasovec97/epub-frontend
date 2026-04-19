@@ -1,37 +1,30 @@
 {
   "HomePage": {
-    "title": "Papirus",
+    "title": "Pergament",
     "subtitle": "Hello — Bootstrap and localisation are working.",
     "hero": {
-      "title": "Turn PDFs and images into EPUB",
-      "subtitle": "Upload a PDF or a set of screenshots. We run optical reading and structure the content into a clean, readable EPUB file.",
-      "cta": "Upload now"
+      "title": "Scan a book into a clean EPUB",
+      "subtitle": "Open this on your phone, photograph each page inside the guide, and we'll email you the finished EPUB.",
+      "cta": "Start scanning"
     },
     "howItWorks": {
       "heading": "How it works",
       "step1": {
-        "title": "Upload",
-        "desc": "Drop a PDF or images (PNG, JPG, WebP) into the upload zone."
+        "title": "Open on phone",
+        "desc": "Scan the QR code or open this site on your phone to use the camera."
       },
       "step2": {
-        "title": "Pay",
-        "desc": "See the page count, enter your email, and pay securely via Stripe."
+        "title": "Scan each page",
+        "desc": "Line up each page inside the guide rectangle, skipping page numbers and margins."
       },
       "step3": {
-        "title": "Receive",
-        "desc": "We convert your file to EPUB and send it straight to your email."
+        "title": "Pay & receive",
+        "desc": "Pay securely via Stripe and receive the finished EPUB in your inbox."
       }
     },
-    "upload": {
-      "heading": "Upload your file",
-      "dropPrompt": "Drag & drop a PDF or images here",
-      "or": "or",
-      "browse": "Browse files",
-      "acceptedFormats": "Accepted: PDF, PNG, JPG, WebP",
-      "fileSelected": "Selected: {filename}",
-      "submit": "Convert to EPUB",
-      "uploading": "Uploading\u2026",
-      "uploadError": "Upload failed. Please try again."
+    "start": {
+      "heading": "Ready to scan",
+      "mobileCta": "Start scanning"
     },
     "pricing": {
       "heading": "Simple pricing",
@@ -41,11 +34,81 @@
       "paymentNote": "Payment via Stripe after processing. No account required."
     }
   },
+  "ScanPage": {
+    "desktop": {
+      "heading": "Continue on your phone",
+      "body": "The scanner needs a phone camera. Scan the QR code below or open this URL on your mobile device.",
+      "urlLabel": "Or visit:"
+    },
+    "intro": {
+      "heading": "Before you start",
+      "warning1": "The first photo is the book cover — fit it inside the frame.",
+      "warning2": "Then capture pages in order, one shot per page.",
+      "warning3": "Do not include page numbers, headers, or footers.",
+      "warning4": "Hold the phone flat; good lighting and a steady hand help.",
+      "start": "Start camera"
+    },
+    "camera": {
+      "shutter": "Capture",
+      "done": "Done",
+      "back": "Back",
+      "counter": "{count} captured",
+      "permissionDenied": "Camera permission denied. Enable it in your browser settings and reload.",
+      "noCamera": "No camera available on this device.",
+      "insecureContext": "The camera is only available over HTTPS (or on localhost). Open this page via a secure URL and try again.",
+      "step": {
+        "cover": "Cover",
+        "page": "Page {number}",
+        "coverHint": "Start with the book cover. Fit it inside the frame.",
+        "pageHint": "Fit the next page inside the frame."
+      },
+      "heading": {
+        "toggle": "Has heading"
+      },
+      "status": {
+        "good": "Ready",
+        "bad": {
+          "dark": "Too dark",
+          "bright": "Too bright",
+          "blurry": "Hold steady",
+          "moving": "Hold steady"
+        }
+      }
+    },
+    "review": {
+      "heading": "Review pages",
+      "count": "{count} pages",
+      "retake": "Retake",
+      "delete": "Delete",
+      "addAnother": "Add another",
+      "finish": "Finish & send",
+      "uploading": "Uploading…",
+      "uploadError": "Upload failed. Please try again.",
+      "empty": "No pages captured yet.",
+      "coverBadge": "Cover",
+      "headingFlag": "Has heading",
+      "qualityFlag": "Quality issue",
+      "qualityIssue": {
+        "dark": "Dark",
+        "bright": "Bright",
+        "blurry": "Blurry",
+        "moving": "Motion"
+      }
+    },
+    "coverAdjust": {
+      "title": "Adjust cover",
+      "hint": "Drag each corner to the edge of the book cover.",
+      "detecting": "Detecting cover…",
+      "cannotDetect": "Couldn't detect the cover automatically — drag the corners to align them.",
+      "confirm": "Looks good",
+      "retake": "Retake"
+    }
+  },
   "ConvertPage": {
     "title": "Convert",
     "step": "{current} / {total}",
     "summary": {
-      "heading": "Your file",
+      "heading": "Your scan",
       "pages": "{count} pages",
       "price": "{amount} EUR",
       "minimumNote": "20-page minimum applied",
@@ -56,14 +119,30 @@
       "emailLabel": "Email address",
       "emailPlaceholder": "you@example.com",
       "pay": "Pay with Stripe",
-      "paying": "Redirecting\u2026",
+      "paying": "Redirecting…",
       "back": "Back",
       "error": "Something went wrong. Please try again."
     },
     "confirmation": {
       "heading": "All done",
       "body": "Payment received. Processing has started. You'll receive your EPUB at {email} shortly.",
-      "note": "You can close this page."
+      "note": "You can close this page.",
+      "processingHeading": "Converting your book",
+      "processingBody": "Processing your scans into an EPUB. This usually takes a minute or two.",
+      "processingAria": "Processing in progress",
+      "elapsed": "{seconds}s elapsed",
+      "readyHeading": "Your EPUB is ready",
+      "download": "Download EPUB",
+      "pagesLabel": "Pages",
+      "priceLabel": "Price",
+      "processingTimeLabel": "Processing time",
+      "expiresLabel": "Download expires",
+      "emailNote": "A copy was also sent to {email}.",
+      "emailFallback": "your email",
+      "failedHeading": "Processing failed",
+      "failedBody": "Something went wrong while converting your book. Please contact support with your session ID.",
+      "expiredHeading": "This session has expired",
+      "expiredBody": "Download links are available for 7 days after purchase. Check your email for the copy we sent you."
     },
     "notFound": "Session not found."
   }

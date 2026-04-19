@@ -6,9 +6,14 @@ import styles from "./page.module.css";
 
 type Step = 1 | 2 | 3;
 
-interface SessionData {
+interface ResultResponse {
+  sessionId: string;
+  status: "processing" | "completed" | "failed" | string;
   pageCount: number;
-  status: "pending" | "processing" | "done";
+  priceEur: number;
+  processingTimeSec: number | null;
+  expiresAt: string | null;
+  downloadUrl: string | null;
 }
 
 export default async function ConvertPage({
@@ -24,30 +29,34 @@ export default async function ConvertPage({
   const t = await getTranslations("ConvertPage");
   const searchParamsResult = await searchParams;
 
-  // Fetch session data from backend
-  const backendUrl = process.env.BACKEND_BASE_URL;
-  if (!backendUrl) {
-    notFound();
-  }
-
-  let sessionData: SessionData;
-  try {
-    const res = await fetch(`${backendUrl}/sessions/${sessionId}`, {
-      cache: "no-store",
-    });
-    if (!res.ok) {
-      notFound();
-    }
-    sessionData = await res.json();
-  } catch {
-    notFound();
-  }
-
   let initialStep: Step = 1;
   if (searchParamsResult.step === "confirmation") {
     initialStep = 3;
   } else if (searchParamsResult.step === "billing") {
     initialStep = 2;
+  }
+
+  // Step 3 polls the result endpoint client-side; no need to fetch here.
+  let pageCount = 0;
+  if (initialStep !== 3) {
+    const backendUrl = process.env.BACKEND_BASE_URL;
+    if (!backendUrl) {
+      notFound();
+    }
+
+    let result: ResultResponse;
+    try {
+      const res = await fetch(`${backendUrl}/sessions/${sessionId}/result`, {
+        cache: "no-store",
+      });
+      if (!res.ok) {
+        notFound();
+      }
+      result = await res.json();
+    } catch {
+      notFound();
+    }
+    pageCount = result.pageCount;
   }
 
   return (
@@ -56,7 +65,7 @@ export default async function ConvertPage({
         <h1 className={styles.title}>{t("title")}</h1>
         <ConvertStepper
           sessionId={sessionId}
-          pageCount={sessionData.pageCount}
+          pageCount={pageCount}
           initialStep={initialStep}
         />
       </div>

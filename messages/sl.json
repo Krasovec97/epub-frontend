@@ -1,37 +1,30 @@
 {
   "HomePage": {
-    "title": "Papirus",
+    "title": "Pergament",
     "subtitle": "Pozdravljeni — Bootstrap in lokalizacija delujeta.",
     "hero": {
-      "title": "Pretvorite PDF-e in slike v EPUB",
-      "subtitle": "Naložite PDF ali skupek posnetkov zaslona. Izvedemo optično branje in vsebino strukturiramo v čisto, berljivo datoteko EPUB.",
-      "cta": "Naloži zdaj"
+      "title": "Skenirajte knjigo v čist EPUB",
+      "subtitle": "Odprite to stran na telefonu, fotografirajte vsako stran znotraj okvirja in poslali vam bomo dokončan EPUB po e-pošti.",
+      "cta": "Začni skenirati"
     },
     "howItWorks": {
       "heading": "Kako deluje",
       "step1": {
-        "title": "Naloži",
-        "desc": "Povlecite PDF ali slike (PNG, JPG, WebP) v območje za nalaganje."
+        "title": "Odpri na telefonu",
+        "desc": "Skenirajte QR kodo ali odprite to stran na telefonu, da uporabite kamero."
       },
       "step2": {
-        "title": "Plačaj",
-        "desc": "Plačajte glede na število strani in varno plačajte prek Stripe."
+        "title": "Poslikaj strani",
+        "desc": "Vsako stran postavite znotraj okvirja; izpustite številke strani in robove."
       },
       "step3": {
-        "title": "Prejmi",
-        "desc": "Datoteko pretvorimo v EPUB in jo pošljemo neposredno na vaš e-poštni naslov."
+        "title": "Plačaj in prejmi",
+        "desc": "Varno plačajte prek Stripe in prejmite dokončan EPUB v svoj nabiralnik."
       }
     },
-    "upload": {
-      "heading": "Naložite datoteko",
-      "dropPrompt": "Sem povlecite PDF ali slike",
-      "or": "ali",
-      "browse": "Poiščite datoteke",
-      "acceptedFormats": "Sprejeto: PDF, PNG, JPG, WebP",
-      "fileSelected": "Izbrano: {filename}",
-      "submit": "Pretvori v EPUB",
-      "uploading": "Nalaganje\u2026",
-      "uploadError": "Nalaganje ni uspelo. Poskusite znova."
+    "start": {
+      "heading": "Pripravljen na skeniranje",
+      "mobileCta": "Začni skenirati"
     },
     "pricing": {
       "heading": "Preprosta cena",
@@ -41,11 +34,81 @@
       "paymentNote": "Uporabniški račun ni potreben."
     }
   },
+  "ScanPage": {
+    "desktop": {
+      "heading": "Nadaljujte na telefonu",
+      "body": "Skener potrebuje kamero telefona. Skenirajte spodnjo QR kodo ali odprite ta naslov na mobilni napravi.",
+      "urlLabel": "Ali obiščite:"
+    },
+    "intro": {
+      "heading": "Preden začnete",
+      "warning1": "Prva fotografija je naslovnica knjige — postavite jo znotraj okvirja.",
+      "warning2": "Nato zajemite strani po vrsti, en posnetek na stran.",
+      "warning3": "Ne vključujte številk strani, glav ali nog.",
+      "warning4": "Telefon držite mirno in vodoravno; dobra osvetlitev pomaga.",
+      "start": "Vklopi kamero"
+    },
+    "camera": {
+      "shutter": "Zajemi",
+      "done": "Končano",
+      "back": "Nazaj",
+      "counter": "{count} zajetih",
+      "permissionDenied": "Dovoljenje za kamero zavrnjeno. Omogočite ga v nastavitvah brskalnika in osvežite stran.",
+      "noCamera": "Na tej napravi ni kamere.",
+      "insecureContext": "Kamera je na voljo samo prek HTTPS (ali na localhost). Stran odprite prek varnega naslova in poskusite znova.",
+      "step": {
+        "cover": "Naslovnica",
+        "page": "Stran {number}",
+        "coverHint": "Začnite z naslovnico knjige. Postavite jo znotraj okvirja.",
+        "pageHint": "Naslednjo stran oz. njeno vsebino poravnajte znotraj okvirja."
+      },
+      "heading": {
+        "toggle": "Ta stran ima naslov"
+      },
+      "status": {
+        "good": "Pripravljeno",
+        "bad": {
+          "dark": "Premalo svetlobe",
+          "bright": "Preveč svetlobe",
+          "blurry": "Držite mirno",
+          "moving": "Držite mirno"
+        }
+      }
+    },
+    "review": {
+      "heading": "Pregled strani",
+      "count": "{count} strani",
+      "retake": "Ponovi",
+      "delete": "Izbriši",
+      "addAnother": "Dodaj stran",
+      "finish": "Končaj in pošlji",
+      "uploading": "Nalaganje…",
+      "uploadError": "Nalaganje ni uspelo. Poskusite znova.",
+      "empty": "Še nobena stran ni zajeta.",
+      "coverBadge": "Ovitek",
+      "headingFlag": "Vsebuje naslov",
+      "qualityFlag": "Nizka kakovost",
+      "qualityIssue": {
+        "dark": "Temno",
+        "bright": "Presvetlo",
+        "blurry": "Zamegljeno",
+        "moving": "Premik"
+      }
+    },
+    "coverAdjust": {
+      "title": "Prilagodi naslovnico",
+      "hint": "Povlecite oglišča do robov naslovnice.",
+      "detecting": "Iščem naslovnico…",
+      "cannotDetect": "Naslovnice ni bilo mogoče zaznati samodejno – povlecite oglišča ročno.",
+      "confirm": "Potrdi",
+      "retake": "Ponovno"
+    }
+  },
   "ConvertPage": {
     "title": "Pretvorba",
     "step": "{current} / {total}",
     "summary": {
-      "heading": "Vaša datoteka",
+      "heading": "Vaš posnetek",
       "pages": "{count} strani",
       "price": "{amount} EUR",
       "minimumNote": "Uporabljen minimum 20 strani",
@@ -56,14 +119,30 @@
       "emailLabel": "E-poštni naslov",
       "emailPlaceholder": "vas@primer.com",
       "pay": "Plačaj s Stripe",
-      "paying": "Preusmerjanje\u2026",
+      "paying": "Preusmerjanje…",
       "back": "Nazaj",
       "error": "Prišlo je do napake. Poskusite znova."
     },
     "confirmation": {
       "heading": "Zaključeno",
       "body": "Plačilo prejeto. Obdelava se je začela. Datoteko EPUB boste prejeli na {email}.",
-      "note": "Stran lahko zaprete."
+      "note": "Stran lahko zaprete.",
+      "processingHeading": "Pretvarjamo vašo knjigo",
+      "processingBody": "Vaše slike pretvarjamo v EPUB. Običajno traja minuto ali dve.",
+      "processingAria": "Obdelava v teku",
+      "elapsed": "pretečenih {seconds} s",
+      "readyHeading": "Vaš EPUB je pripravljen",
+      "download": "Prenesi EPUB",
+      "pagesLabel": "Strani",
+      "priceLabel": "Cena",
+      "processingTimeLabel": "Čas obdelave",
+      "expiresLabel": "Prenos poteče",
+      "emailNote": "Kopijo smo poslali tudi na {email}.",
+      "emailFallback": "vaš e-naslov",
+      "failedHeading": "Obdelava ni uspela",
+      "failedBody": "Pri pretvarjanju vaše knjige je prišlo do napake. Obrnite se na podporo in navedite ID seje.",
+      "expiredHeading": "Ta seja je potekla",
+      "expiredBody": "Povezave za prenos so na voljo 7 dni po nakupu. Preverite svoj e-poštni nabiralnik za kopijo, ki smo vam jo poslali."
     },
     "notFound": "Seja ni najdena."
   }

@@ -1,0 +1,58 @@
+.wrap {
+  min-height: calc(100dvh - 58px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+}
+
+.inner {
+  max-width: 480px;
+  text-align: center;
+}
+
+.heading {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--paper);
+  margin-bottom: 1.5rem;
+}
+
+.body {
+  font-family: var(--serif);
+  color: var(--paper-mid);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.qr {
+  width: 240px;
+  height: 240px;
+  padding: 1rem;
+  border: 1px solid var(--gold-border);
+  background: transparent;
+  display: block;
+  margin: 0 auto 2rem;
+}
+
+.urlLabel {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--paper-mid);
+  margin-bottom: 0.75rem;
+}
+
+.url {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--gold);
+  word-break: break-all;
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--paper-faint);
+}

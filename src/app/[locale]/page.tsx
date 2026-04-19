@@ -1,8 +1,9 @@
-import { useTranslations } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import HowItWorks from "@/components/HowItWorks";
-import UploadZone from "@/components/UploadZone";
 import PricingCard from "@/components/PricingCard";
+import DesktopHandoff from "@/components/DesktopHandoff";
+import { getIsMobile, getCurrentUrl } from "@/lib/request-context";
 import styles from "./page.module.css";
 
 export default async function HomePage({
@@ -12,27 +13,24 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <HomePageContent />;
-}
-
-function HomePageContent() {
-  const t = useTranslations("HomePage");
+  const t = await getTranslations("HomePage");
+  const isMobile = await getIsMobile();
 
   return (
     <main>
-      {/* Hero */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <p className={styles.eyebrow}>PDF · PNG · JPG → EPUB</p>
+          <p className={styles.eyebrow}>BOOK → EPUB</p>
           <h1 className={styles.heroTitle}>{t("hero.title")}</h1>
           <p className={styles.heroSub}>{t("hero.subtitle")}</p>
-          <a href="#upload" className={styles.heroCta}>
-            {t("hero.cta")} →
-          </a>
+          {isMobile && (
+            <Link href="/scan" className={styles.heroCta}>
+              {t("hero.cta")} →
+            </Link>
+          )}
         </div>
       </section>
 
-      {/* How it works */}
       <HowItWorks
         heading={t("howItWorks.heading")}
         steps={[
@@ -42,15 +40,19 @@ function HomePageContent() {
         ]}
       />
 
-      {/* Upload zone */}
-      <section id="upload" className={styles.uploadSection}>
-        <div className={styles.sectionInner}>
-          <h2 className={styles.sectionHeading}>{t("upload.heading")}</h2>
-          <UploadZone />
-        </div>
-      </section>
+      {isMobile ? (
+        <section id="start" className={styles.uploadSection}>
+          <div className={styles.sectionInner}>
+            <h2 className={styles.sectionHeading}>{t("start.heading")}</h2>
+            <Link href="/scan" className={styles.mobileCta}>
+              {t("start.mobileCta")}
+            </Link>
+          </div>
+        </section>
+      ) : (
+        <DesktopHandoff url={await getCurrentUrl(locale === "sl" ? "/scan" : `/${locale}/scan`)} />
+      )}
 
-      {/* Pricing */}
       <section className={styles.pricingSection}>
         <div className={styles.sectionInner}>
           <PricingCard

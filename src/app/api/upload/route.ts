@@ -1,5 +1,14 @@
 import { NextResponse } from "next/server";
 
+const MAX_FILES = 500;
+const MAX_TOTAL_BYTES = 200 * 1024 * 1024;
+const ALLOWED_MIME = new Set([
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "application/pdf",
+]);
+
 export async function POST(request: Request) {
   const backendUrl = process.env.BACKEND_BASE_URL;
   if (!backendUrl) {
@@ -13,37 +22,41 @@ export async function POST(request: Request) {
   try {
     data = await request.formData();
   } catch {
+    return NextResponse.json({ error: "Invalid form data" }, { status: 400 });
+  }
+
+  const files = data.getAll("files").filter((f): f is File => f instanceof File);
+
+  if (files.length === 0) {
+    return NextResponse.json({ error: "No files provided" }, { status: 400 });
+  }
+
+  if (files.length > MAX_FILES) {
     return NextResponse.json(
-      { error: "Invalid form data" },
+      { error: `Too many files (max ${MAX_FILES})` },
       { status: 400 },
     );
   }
 
-  const file = data.get("file") as File | null;
-
-  if (!file) {
-    return NextResponse.json(
-      { error: "Missing file" },
-      { status: 400 },
-    );
+  let totalBytes = 0;
+  for (const file of files) {
+    if (!ALLOWED_MIME.has(file.type)) {
+      return NextResponse.json(
+        { error: `Unsupported file type: ${file.type}` },
+        { status: 400 },
+      );
+    }
+    totalBytes += file.size;
   }
 
-  // Validate file extension
-  const allowedExtensions = [".pdf", ".png", ".jpg", ".jpeg", ".webp"];
-  const fileName = file.name.toLowerCase();
-  const hasValidExtension = allowedExtensions.some((ext) =>
-    fileName.endsWith(ext),
-  );
-  if (!hasValidExtension) {
-    return NextResponse.json(
-      { error: "Only PDF and image files are accepted" },
-      { status: 400 },
-    );
+  if (totalBytes > MAX_TOTAL_BYTES) {
+    return NextResponse.json({ error: "Upload too large" }, { status: 413 });
   }
 
-  // Proxy to backend
   const upstream = new FormData();
-  upstream.append("file", file);
+  for (const file of files) {
+    upstream.append("files", file, file.name);
+  }
 
   const res = await fetch(`${backendUrl}/upload`, {
     method: "POST",
@@ -52,10 +65,7 @@ export async function POST(request: Request) {
 
   if (!res.ok) {
     const text = await res.text().catch(() => "Backend error");
-    return NextResponse.json(
-      { error: text },
-      { status: res.status },
-    );
+    return NextResponse.json({ error: text }, { status: res.status });
   }
 
   const result: { sessionId: string; pageCount: number } = await res.json();
