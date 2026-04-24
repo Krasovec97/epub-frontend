@@ -62,9 +62,6 @@
         "coverHint": "Start with the book cover. Fit it inside the frame.",
         "pageHint": "Fit the next page inside the frame."
       },
-      "heading": {
-        "toggle": "Has heading"
-      },
       "status": {
         "good": "Ready",
         "bad": {
@@ -87,7 +84,6 @@
       "uploadError": "Upload failed. Please try again.",
       "empty": "No pages captured yet.",
       "coverBadge": "Cover",
-      "headingFlag": "Has heading",
       "qualityFlag": "Quality issue",
       "qualityIssue": {
         "dark": "Dark",

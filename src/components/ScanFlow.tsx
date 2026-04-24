@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import type { QualityVerdict } from "@/lib/image-quality";
 import { preloadOpenCv } from "@/lib/cover-detect";
-import CameraView, { type CaptureMeta } from "./CameraView";
+import CameraView from "./CameraView";
 import CoverAdjust from "./CoverAdjust";
 import ScanReview, { type Capture } from "./ScanReview";
 import styles from "./ScanFlow.module.css";
@@ -42,38 +42,27 @@ export default function ScanFlow() {
     };
   }, []);
 
-  function appendCapture(
-    blob: Blob,
-    quality: QualityVerdict,
-    hasHeading: boolean,
-  ) {
+  function appendCapture(blob: Blob, quality: QualityVerdict) {
     const id =
       typeof crypto !== "undefined" && "randomUUID" in crypto
         ? crypto.randomUUID()
         : String(Date.now()) + Math.random();
     const previewUrl = URL.createObjectURL(blob);
-    setCaptures((prev) => [
-      ...prev,
-      { id, blob, previewUrl, quality, hasHeading },
-    ]);
+    setCaptures((prev) => [...prev, { id, blob, previewUrl, quality }]);
   }
 
-  function handleCapture(
-    blob: Blob,
-    quality: QualityVerdict,
-    meta: CaptureMeta,
-  ) {
+  function handleCapture(blob: Blob, quality: QualityVerdict) {
     if (captures.length === 0) {
       setPendingCover({ blob, quality });
       setStage("coverAdjust");
       return;
     }
-    appendCapture(blob, quality, meta.hasHeading);
+    appendCapture(blob, quality);
   }
 
   function handleCoverConfirm(rectified: Blob) {
     if (!pendingCover) return;
-    appendCapture(rectified, pendingCover.quality, false);
+    appendCapture(rectified, pendingCover.quality);
     setPendingCover(null);
     setStage("capturing");
   }
@@ -98,10 +87,7 @@ export default function ScanFlow() {
 
     const formData = new FormData();
     captures.forEach((capture, idx) => {
-      const filename =
-        idx === 0
-          ? "cover.jpg"
-          : `page-${idx}${capture.hasHeading ? "-heading" : ""}.jpg`;
+      const filename = idx === 0 ? "cover.jpg" : `page-${idx}.jpg`;
       formData.append("files", capture.blob, filename);
     });
 
@@ -167,11 +153,10 @@ export default function ScanFlow() {
 
   return (
     <ScanReview
-      captures={captures.map(({ id, previewUrl, quality, hasHeading }) => ({
+      captures={captures.map(({ id, previewUrl, quality }) => ({
         id,
         previewUrl,
         quality,
-        hasHeading,
       }))}
       uploading={uploading}
       errorMessage={errorMessage}

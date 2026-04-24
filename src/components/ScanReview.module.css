@@ -94,26 +94,6 @@
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
 }
 
-.headingBadge {
-  position: absolute;
-  bottom: 0.35rem;
-  right: 0.4rem;
-  min-width: 1.25rem;
-  height: 1.25rem;
-  padding: 0 0.35rem;
-  border-radius: 0.25rem;
-  background: var(--gold);
-  color: var(--bg);
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
-}
-
 .deleteBtn {
   font-family: var(--mono);
   font-size: 0.6rem;

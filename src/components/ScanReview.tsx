@@ -8,7 +8,6 @@ export interface Capture {
   id: string;
   previewUrl: string;
   quality: QualityVerdict;
-  hasHeading: boolean;
 }
 
 interface ScanReviewProps {
@@ -61,15 +60,6 @@ export default function ScanReview({
                   <span className={styles.index} data-cover={idx === 0 || undefined}>
                     {idx === 0 ? t("coverBadge") : idx}
                   </span>
-                  {capture.hasHeading && (
-                    <span
-                      className={styles.headingBadge}
-                      title={t("headingFlag")}
-                      aria-label={t("headingFlag")}
-                    >
-                      H
-                    </span>
-                  )}
                   {flagged && (
                     <span
                       className={styles.qualityBadge}

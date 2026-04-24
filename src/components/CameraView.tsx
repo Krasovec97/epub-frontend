@@ -20,12 +20,8 @@ type CameraStatus =
 
 type FrameState = "idle" | "good" | "bad";
 
-export interface CaptureMeta {
-  hasHeading: boolean;
-}
-
 interface CameraViewProps {
-  onCapture: (blob: Blob, quality: QualityVerdict, meta: CaptureMeta) => void;
+  onCapture: (blob: Blob, quality: QualityVerdict) => void;
   onDone: () => void;
   onBack: () => void;
   captureCount: number;
@@ -103,7 +99,6 @@ export default function CameraView({
   const [frameState, setFrameState] = useState<FrameState>("idle");
   const [primaryIssue, setPrimaryIssue] = useState<QualityIssue | null>(null);
   const [flashKey, setFlashKey] = useState<number>(0);
-  const [hasHeading, setHasHeading] = useState<boolean>(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -293,15 +288,13 @@ export default function CameraView({
       };
     }
 
-    const meta: CaptureMeta = { hasHeading };
     canvas.toBlob(
       (blob) => {
-        if (blob) onCapture(blob, quality, meta);
+        if (blob) onCapture(blob, quality);
       },
       "image/jpeg",
       0.9,
     );
-    setHasHeading(false);
   }
 
   const errorText =
@@ -373,19 +366,6 @@ export default function CameraView({
         <div className={styles.statusHint} data-state={frameState}>
           {statusText}
         </div>
-      )}
-      {status === "ready" && stepKind === "page" && (
-        <button
-          type="button"
-          className={styles.headingToggle}
-          onClick={() => setHasHeading((v) => !v)}
-          aria-pressed={hasHeading}
-        >
-          <span className={styles.headingCheck} aria-hidden="true">
-            {hasHeading ? "✓" : ""}
-          </span>
-          <span>{t("heading.toggle")}</span>
-        </button>
       )}
       <div className={styles.controls}>
         <div className={styles.counter}>

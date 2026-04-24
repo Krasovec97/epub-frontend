@@ -62,9 +62,6 @@
         "coverHint": "Začnite z naslovnico knjige. Postavite jo znotraj okvirja.",
         "pageHint": "Naslednjo stran oz. njeno vsebino poravnajte znotraj okvirja."
       },
-      "heading": {
-        "toggle": "Trenutna stran vsebuje naslov(e)"
-      },
       "status": {
         "good": "Pripravljeno",
         "bad": {
@@ -87,7 +84,6 @@
       "uploadError": "Nalaganje ni uspelo. Poskusite znova.",
       "empty": "Še nobena stran ni zajeta.",
       "coverBadge": "Ovitek",
-      "headingFlag": "Vsebuje naslov",
       "qualityFlag": "Nizka kakovost",
       "qualityIssue": {
         "dark": "Temno",
