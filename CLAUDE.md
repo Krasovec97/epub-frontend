@@ -24,7 +24,7 @@ The user can then download the processed EPUB file, after payments.
 - Payments are made via Stripe.
 - The user is charged a fixed amount for each page.
 - The user is charged a fixed amount for the total number of pages.
-- The price is 0.15 EUR per page.
+- The price is 0.20 EUR per page.
 
 ### MVP features
 - Mobile-only scan flow: user takes one photo per page using the device camera with a fixed 1:√2 crop guide overlay. Cropped JPEGs are POSTed to `/api/upload` as a single multipart request (`files` field, repeated).

@@ -176,13 +176,12 @@ export async function detectCorners(
   }
 }
 
-export async function warpToJpeg(
+export async function warpToCanvas(
   source: HTMLCanvasElement,
   corners: CornerSet,
   targetWidth: number,
   targetHeight: number,
-  quality: number = 0.9,
-): Promise<Blob> {
+): Promise<HTMLCanvasElement> {
   await ensureOpenCv();
   const { default: Jscanify } = await import("jscanify/client");
   const scanner = new Jscanify();
@@ -195,8 +194,48 @@ export async function warpToJpeg(
   if (!canvas) {
     throw new Error("Perspective warp failed");
   }
-  return await new Promise<Blob>((resolve, reject) => {
-    canvas.toBlob(
+  return canvas;
+}
+
+export async function warpToJpeg(
+  source: HTMLCanvasElement,
+  corners: CornerSet,
+  targetWidth: number,
+  targetHeight: number,
+  quality: number = 0.9,
+): Promise<Blob> {
+  const canvas = await warpToCanvas(source, corners, targetWidth, targetHeight);
+  return encodeCanvasToJpeg(canvas, quality);
+}
+
+export function rotateCanvas90Cw(
+  source: HTMLCanvasElement,
+): HTMLCanvasElement {
+  const out = document.createElement("canvas");
+  out.width = source.height;
+  out.height = source.width;
+  const ctx = out.getContext("2d");
+  if (!ctx) throw new Error("2D context unavailable");
+  ctx.translate(out.width, 0);
+  ctx.rotate(Math.PI / 2);
+  ctx.drawImage(source, 0, 0);
+  return out;
+}
+
+export function encodeCanvasToJpeg(
+  source: HTMLCanvasElement,
+  quality: number = 0.9,
+  filter: string | null = null,
+): Promise<Blob> {
+  const out = document.createElement("canvas");
+  out.width = source.width;
+  out.height = source.height;
+  const ctx = out.getContext("2d");
+  if (!ctx) throw new Error("2D context unavailable");
+  if (filter) ctx.filter = filter;
+  ctx.drawImage(source, 0, 0);
+  return new Promise<Blob>((resolve, reject) => {
+    out.toBlob(
       (blob) => {
         if (blob) resolve(blob);
         else reject(new Error("Canvas toBlob returned null"));

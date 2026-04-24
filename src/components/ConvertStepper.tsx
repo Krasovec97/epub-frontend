@@ -46,7 +46,7 @@ export default function ConvertStepper({
   const [status, setStatus] = useState<ActionStatus>("idle");
 
   const billedPages = Math.max(20, pageCount);
-  const price = (billedPages * 0.15).toFixed(2);
+  const price = (billedPages * 0.2).toFixed(2);
   const showMinimumNote = pageCount < 20;
 
   async function handlePay() {

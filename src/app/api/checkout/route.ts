@@ -81,7 +81,7 @@ export async function POST(request: Request) {
           product_data: {
             name: "PDF/Image to EPUB Conversion",
           },
-          unit_amount: 15, // 0.15 EUR in cents
+          unit_amount: 20, // 0.20 EUR in cents
         },
         quantity: Math.max(20, pageCount),
       },

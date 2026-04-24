@@ -28,9 +28,9 @@
     },
     "pricing": {
       "heading": "Simple pricing",
-      "price": "0.15 EUR",
+      "price": "0.20 EUR",
       "perPage": "per page",
-      "minimumNote": "Minimum charge: 20 pages (3.00 EUR)",
+      "minimumNote": "Minimum charge: 20 pages (4.00 EUR)",
       "paymentNote": "Payment via Stripe after processing. No account required."
     }
   },
@@ -101,7 +101,24 @@
       "detecting": "Detecting cover…",
       "cannotDetect": "Couldn't detect the cover automatically — drag the corners to align them.",
       "confirm": "Looks good",
-      "retake": "Retake"
+      "retake": "Retake",
+      "step": "Step {current} of {total}",
+      "cropTitle": "Frame the cover",
+      "cropHint": "Drag corners to the edges. Tap Rotate or Re-detect if needed.",
+      "enhanceTitle": "Tune the look",
+      "enhanceHint": "Adjust tone, then hold the preview to compare.",
+      "next": "Next",
+      "back": "Back",
+      "rotate": "Rotate 90°",
+      "redetect": "Re-detect",
+      "warping": "Preparing…",
+      "brightness": "Brightness",
+      "contrast": "Contrast",
+      "saturation": "Saturation",
+      "warmth": "Warmth",
+      "auto": "Auto",
+      "reset": "Reset",
+      "beforeAfter": "Hold to compare"
     }
   },
   "ConvertPage": {

@@ -28,9 +28,9 @@
     },
     "pricing": {
       "heading": "Preprosta cena",
-      "price": "0,15 EUR",
+      "price": "0,20 EUR",
       "perPage": "na stran",
-      "minimumNote": "Najmanjši strošek: 20 strani (3,00 EUR)",
+      "minimumNote": "Najmanjši strošek: 20 strani (4,00 EUR)",
       "paymentNote": "Uporabniški račun ni potreben."
     }
   },
@@ -101,7 +101,24 @@
       "detecting": "Iščem naslovnico…",
       "cannotDetect": "Naslovnice ni bilo mogoče zaznati samodejno – povlecite oglišča ročno.",
       "confirm": "Potrdi",
-      "retake": "Ponovno"
+      "retake": "Ponovno",
+      "step": "Korak {current} od {total}",
+      "cropTitle": "Postavite naslovnico",
+      "cropHint": "Povlecite oglišča do robov. Po potrebi obrnite ali znova zaznajte.",
+      "enhanceTitle": "Uglasite videz",
+      "enhanceHint": "Prilagodite ton, nato pridržite za primerjavo.",
+      "next": "Naprej",
+      "back": "Nazaj",
+      "rotate": "Obrni 90°",
+      "redetect": "Znova zaznaj",
+      "warping": "Pripravljam…",
+      "brightness": "Svetlost",
+      "contrast": "Kontrast",
+      "saturation": "Nasičenost",
+      "warmth": "Toplota",
+      "auto": "Samodejno",
+      "reset": "Ponastavi",
+      "beforeAfter": "Pridržite za primerjavo"
     }
   },
   "ConvertPage": {

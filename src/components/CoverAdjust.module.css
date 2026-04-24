@@ -13,8 +13,15 @@
   padding: calc(0.9rem + env(safe-area-inset-top, 0px)) 1.25rem 0.75rem;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.4rem;
   text-align: center;
+}
+
+.titleRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .title {
@@ -23,6 +30,23 @@
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold);
+}
+
+.stepIndicator {
+  display: inline-flex;
+  gap: 0.35rem;
+}
+
+.stepDot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: rgba(231, 190, 96, 0.3);
+  transition: background-color 140ms ease;
+}
+
+.stepDotActive {
+  background: var(--gold);
 }
 
 .hint {
@@ -54,7 +78,7 @@
 .image {
   display: block;
   max-width: 100%;
-  max-height: calc(100vh - 14rem);
+  max-height: calc(100vh - 22rem);
   width: auto;
   height: auto;
   user-select: none;
@@ -85,13 +109,17 @@
   stroke: rgba(11, 11, 11, 0.85);
   stroke-width: 2;
   vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+
+.handleHit {
+  fill: rgba(0, 0, 0, 0);
   cursor: grab;
   touch-action: none;
 }
 
-.handle:active {
+.handleHit:active {
   cursor: grabbing;
-  fill: rgba(243, 234, 214, 0.98);
 }
 
 .loader {
@@ -107,6 +135,128 @@
   font-size: 0.68rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+}
+
+.magnifier {
+  position: absolute;
+  top: 0.5rem;
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: #000;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.magnifierLeft {
+  left: 0.5rem;
+}
+
+.magnifierRight {
+  right: 0.5rem;
+}
+
+.magnifierCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.toolRow {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.4rem 1rem 0;
+  flex-wrap: wrap;
+}
+
+.toolBtn {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.55rem 0.9rem;
+  background: rgba(231, 190, 96, 0.08);
+  color: var(--gold);
+  border: 1px solid var(--gold-border);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background-color 140ms ease, color 140ms ease;
+}
+
+.toolBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.toolBtnActive {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+.sliders {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 0.75rem 1.25rem 0.25rem;
+}
+
+.sliderRow {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr 2.4rem;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.sliderLabel {
+  color: rgba(243, 234, 214, 0.78);
+}
+
+.slider {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  height: 2px;
+  background: rgba(243, 234, 214, 0.2);
+  border-radius: 999px;
+  outline: none;
+  touch-action: manipulation;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid rgba(11, 11, 11, 0.85);
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid rgba(11, 11, 11, 0.85);
+  cursor: pointer;
+}
+
+.sliderValue {
+  text-align: right;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
 }
 
 .controls {
