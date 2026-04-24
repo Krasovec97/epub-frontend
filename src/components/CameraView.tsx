@@ -211,14 +211,14 @@ export default function CameraView({
           ANALYSIS_WIDTH,
           ANALYSIS_HEIGHT,
         );
-        const { brightness, sharpness } = analyzeFrame(imageData);
+        const { brightness, sharpness, shadow } = analyzeFrame(imageData);
         const motion = prevFrameDataRef.current
           ? analyzeMotion(prevFrameDataRef.current, imageData)
           : null;
         prevFrameDataRef.current = imageData;
 
         const verdict = judge(
-          { brightness, sharpness, motion },
+          { brightness, sharpness, motion, shadow },
           { lenient: true, includeMotion: true },
         );
         verdictRef.current = verdict;
@@ -280,16 +280,16 @@ export default function CameraView({
     let quality: QualityVerdict;
     try {
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const { brightness, sharpness } = analyzeFrame(imageData);
+      const { brightness, sharpness, shadow } = analyzeFrame(imageData);
       quality = judge(
-        { brightness, sharpness, motion: null },
+        { brightness, sharpness, motion: null, shadow },
         { lenient: true, includeMotion: false },
       );
     } catch {
       quality = {
         ok: true,
         issues: [],
-        metrics: { brightness: 0, sharpness: 0, motion: null },
+        metrics: { brightness: 0, sharpness: 0, motion: null, shadow: 0 },
       };
     }
 

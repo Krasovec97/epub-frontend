@@ -71,7 +71,8 @@
           "dark": "Premalo svetlobe",
           "bright": "Preveč svetlobe",
           "blurry": "Držite mirno",
-          "moving": "Držite mirno"
+          "moving": "Držite mirno",
+          "shadow": "Izogibajte se senci"
         }
       }
     },
@@ -92,7 +93,8 @@
         "dark": "Temno",
         "bright": "Presvetlo",
         "blurry": "Zamegljeno",
-        "moving": "Premik"
+        "moving": "Premik",
+        "shadow": "Senca"
       }
     },
     "coverAdjust": {

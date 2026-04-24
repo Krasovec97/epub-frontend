@@ -1,9 +1,15 @@
-export type QualityIssue = "dark" | "bright" | "blurry" | "moving";
+export type QualityIssue =
+  | "dark"
+  | "bright"
+  | "blurry"
+  | "moving"
+  | "shadow";
 
 export interface QualityMetrics {
   brightness: number;
   sharpness: number;
   motion: number | null;
+  shadow: number;
 }
 
 export interface QualityVerdict {
@@ -19,18 +25,27 @@ export interface JudgeOptions {
 
 const SHARPNESS_REFERENCE = 40;
 const PIXEL_STRIDE = 4;
+const SHADOW_GRID = 4;
 
 export function analyzeFrame(
   data: ImageData,
-): Pick<QualityMetrics, "brightness" | "sharpness"> {
+): Pick<QualityMetrics, "brightness" | "sharpness" | "shadow"> {
   const { width, height, data: pixels } = data;
   let lumaSum = 0;
   let lumaSamples = 0;
   let sharpSqSum = 0;
   let sharpSamples = 0;
 
+  const cells = SHADOW_GRID * SHADOW_GRID;
+  const cellSums = new Float64Array(cells);
+  const cellCounts = new Int32Array(cells);
+
   for (let y = 0; y < height; y += PIXEL_STRIDE) {
     const rowStart = y * width * 4;
+    const cy = Math.min(
+      SHADOW_GRID - 1,
+      Math.floor((y / height) * SHADOW_GRID),
+    );
     let prevLuma: number | null = null;
     for (let x = 0; x < width; x += PIXEL_STRIDE) {
       const idx = rowStart + x * 4;
@@ -46,6 +61,14 @@ export function analyzeFrame(
         sharpSamples += 1;
       }
       prevLuma = luma;
+
+      const cx = Math.min(
+        SHADOW_GRID - 1,
+        Math.floor((x / width) * SHADOW_GRID),
+      );
+      const cellIdx = cy * SHADOW_GRID + cx;
+      cellSums[cellIdx] += luma;
+      cellCounts[cellIdx] += 1;
     }
   }
 
@@ -54,7 +77,17 @@ export function analyzeFrame(
     sharpSamples > 0 ? Math.sqrt(sharpSqSum / sharpSamples) : 0;
   const sharpness = Math.min(1, rawSharpness / SHARPNESS_REFERENCE);
 
-  return { brightness, sharpness };
+  let cellMin = Infinity;
+  let cellMax = -Infinity;
+  for (let i = 0; i < cells; i++) {
+    if (cellCounts[i] === 0) continue;
+    const mean = cellSums[i] / cellCounts[i];
+    if (mean < cellMin) cellMin = mean;
+    if (mean > cellMax) cellMax = mean;
+  }
+  const shadow = cellMax > -Infinity ? cellMax - cellMin : 0;
+
+  return { brightness, sharpness, shadow };
 }
 
 export function analyzeMotion(prev: ImageData, curr: ImageData): number {
@@ -95,13 +128,26 @@ export function judge(
   opts: JudgeOptions,
 ): QualityVerdict {
   const thresholds = opts.lenient
-    ? { darkMax: 40, brightMin: 230, sharpMin: 0.18, motionMax: 18 }
-    : { darkMax: 55, brightMin: 215, sharpMin: 0.28, motionMax: 10 };
+    ? {
+        darkMax: 40,
+        brightMin: 230,
+        sharpMin: 0.18,
+        motionMax: 18,
+        shadowMax: 110,
+      }
+    : {
+        darkMax: 55,
+        brightMin: 215,
+        sharpMin: 0.28,
+        motionMax: 10,
+        shadowMax: 90,
+      };
 
   const issues: QualityIssue[] = [];
   if (metrics.brightness < thresholds.darkMax) issues.push("dark");
   else if (metrics.brightness > thresholds.brightMin) issues.push("bright");
   if (metrics.sharpness < thresholds.sharpMin) issues.push("blurry");
+  if (metrics.shadow > thresholds.shadowMax) issues.push("shadow");
   if (
     opts.includeMotion &&
     metrics.motion !== null &&

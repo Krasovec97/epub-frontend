@@ -71,7 +71,8 @@
           "dark": "Too dark",
           "bright": "Too bright",
           "blurry": "Hold steady",
-          "moving": "Hold steady"
+          "moving": "Hold steady",
+          "shadow": "Avoid shadows"
         }
       }
     },
@@ -92,7 +93,8 @@
         "dark": "Dark",
         "bright": "Bright",
         "blurry": "Blurry",
-        "moving": "Motion"
+        "moving": "Motion",
+        "shadow": "Shadow"
       }
     },
     "coverAdjust": {
