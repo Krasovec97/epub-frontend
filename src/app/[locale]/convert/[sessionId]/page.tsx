@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 import ConvertStepper from "@/components/ConvertStepper";
+import { getPricePerPageEur, getMinimumPages } from "@/lib/pricing";
 import styles from "./page.module.css";
 
 type Step = 1 | 2 | 3;
@@ -67,6 +68,8 @@ export default async function ConvertPage({
           sessionId={sessionId}
           pageCount={pageCount}
           initialStep={initialStep}
+          pricePerPageEur={getPricePerPageEur()}
+          minimumPages={getMinimumPages()}
         />
       </div>
     </main>

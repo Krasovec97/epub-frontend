@@ -102,6 +102,24 @@
   border-color: var(--gold);
 }
 
+.companyToggle {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper-mid);
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+}
+
+.companyToggle input {
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+
 /* Buttons */
 .primaryBtn {
   display: block;

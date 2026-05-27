@@ -10,9 +10,9 @@
 
 .heading {
   font-family: var(--mono);
-  font-size: 0.65rem;
-  font-weight: 300;
-  letter-spacing: 0.22em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--paper-mid);
   text-align: center;
@@ -54,28 +54,30 @@
 .num {
   display: block;
   font-family: var(--mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
   color: var(--gold);
   margin-bottom: 1.25rem;
 }
 
 .title {
   font-family: var(--serif);
-  font-size: 1.5rem;
-  font-weight: 400;
+  font-size: 1.65rem;
+  font-weight: 700;
+  font-variation-settings: "SOFT" 80, "opsz" 36, "wght" 700;
   color: var(--paper);
   margin-bottom: 0.875rem;
-  letter-spacing: 0.01em;
-  line-height: 1.2;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
 }
 
 .desc {
   font-family: var(--serif);
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--paper-mid);
-  line-height: 1.75;
-  font-weight: 300;
+  line-height: 1.65;
+  font-weight: 400;
 }
 
 @media (max-width: 660px) {

@@ -28,9 +28,10 @@
     },
     "pricing": {
       "heading": "Preprosta cena",
-      "price": "0,20 EUR",
+      "price": "{price} EUR",
       "perPage": "na stran",
-      "minimumNote": "Najmanjši strošek: 20 strani (4,00 EUR)",
+      "vatNote": "z vključenim DDV",
+      "minimumNote": "Najmanjši strošek: {pages} strani ({total} EUR)",
       "paymentNote": "Uporabniški račun ni potreben."
     }
   },
@@ -136,14 +137,27 @@
       "pay": "Plačaj s Stripe",
       "paying": "Preusmerjanje…",
       "back": "Nazaj",
-      "error": "Prišlo je do napake. Poskusite znova."
+      "error": "Prišlo je do napake. Poskusite znova.",
+      "companyToggle": "Plačilo kot podjetje (račun za podjetje)",
+      "companyName": "Naziv podjetja",
+      "companyNamePlaceholder": "Podjetje d.o.o.",
+      "vatId": "ID za DDV / davčna številka",
+      "vatIdPlaceholder": "SI12345678",
+      "addressLine": "Naslov",
+      "addressLinePlaceholder": "Slovenska cesta 1",
+      "postalCode": "Poštna številka",
+      "postalCodePlaceholder": "1000",
+      "city": "Kraj",
+      "cityPlaceholder": "Ljubljana",
+      "country": "Država",
+      "countryPlaceholder": "Slovenija"
     },
     "confirmation": {
       "heading": "Zaključeno",
       "body": "Plačilo prejeto. Obdelava se je začela. Datoteko EPUB boste prejeli na {email}.",
       "note": "Stran lahko zaprete.",
       "processingHeading": "Pretvarjamo vašo knjigo",
-      "processingBody": "Vaše slike pretvarjamo v EPUB. Običajno traja minuto ali dve.",
+      "processingBody": "Vaše slike pretvarjamo v EPUB. Stran lahko zaprete, po pretvorbi boste prejeli e-poštno sporočilo z datoteko EPUB.",
       "processingAria": "Obdelava v teku",
       "elapsed": "pretečenih {seconds} s",
       "readyHeading": "Vaš EPUB je pripravljen",

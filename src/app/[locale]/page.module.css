@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5rem 2rem;
+  padding: 4rem 2rem 5rem;
   border-bottom: 1px solid var(--paper-faint);
   position: relative;
   overflow: hidden;
@@ -16,7 +16,7 @@
   inset: 0;
   background: radial-gradient(
     ellipse 65% 55% at 50% 45%,
-    rgba(200, 164, 90, 0.055) 0%,
+    rgba(200, 164, 90, 0.065) 0%,
     transparent 70%
   );
   pointer-events: none;
@@ -34,61 +34,79 @@
 }
 
 .heroInner {
-  max-width: 860px;
+  max-width: 920px;
   text-align: center;
   position: relative;
   z-index: 1;
 }
 
+.heroAnim {
+  width: min(420px, 80vw);
+  height: min(420px, 80vw);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto 2.5rem;
+  position: relative;
+}
+
 .eyebrow {
   font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.28em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 2.75rem;
-  opacity: 0.75;
+  margin-bottom: 2rem;
+  opacity: 0.9;
 }
 
 .heroTitle {
   font-family: var(--serif);
-  font-size: clamp(3.2rem, 8.5vw, 7.5rem);
-  font-weight: 300;
-  font-style: italic;
-  line-height: 1.06;
-  letter-spacing: -0.01em;
+  font-size: clamp(3.4rem, 9vw, 8rem);
+  font-weight: 700;
+  font-style: normal;
+  font-variation-settings: "SOFT" 100, "opsz" 144, "wght" 700;
+  line-height: 1.0;
+  letter-spacing: -0.035em;
   color: var(--paper);
-  margin-bottom: 2.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.heroTitle em {
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "opsz" 144, "wght" 600;
+  color: var(--gold);
 }
 
 .heroSub {
   font-family: var(--serif);
-  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-size: clamp(1.05rem, 1.85vw, 1.3rem);
   color: var(--paper-mid);
-  max-width: 520px;
-  margin: 0 auto 3rem;
-  font-weight: 300;
-  line-height: 1.7;
+  max-width: 540px;
+  margin: 0 auto 2.75rem;
+  font-weight: 400;
+  line-height: 1.55;
 }
 
 .heroCta {
   display: inline-block;
-  padding: 0.8rem 2.5rem;
-  border: 1px solid var(--gold-border);
-  color: var(--gold);
+  padding: 1rem 2.6rem;
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  color: var(--bg);
   font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: background 0.22s, border-color 0.22s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .heroCta:hover {
-  background: var(--gold-dim);
-  border-color: var(--gold);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(200, 164, 90, 0.25);
   text-decoration: none;
-  color: var(--gold);
+  color: var(--bg);
 }
 
 /* ── Section shells ── */
@@ -111,10 +129,11 @@
   display: block;
   width: 100%;
   text-align: center;
-  padding: 1.1rem 1.5rem;
+  padding: 1.2rem 1.5rem;
   font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   background: var(--gold);
   color: var(--bg);
@@ -129,9 +148,9 @@
 
 .sectionHeading {
   font-family: var(--mono);
-  font-size: 0.65rem;
-  font-weight: 300;
-  letter-spacing: 0.22em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--paper-mid);
   text-align: center;

@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import type { CompanyBilling } from "@/lib/billing";
+import { getPricePerPageCents, getMinimumPages } from "@/lib/pricing";
 
 function getStripe() {
   const key = process.env.STRIPE_SECRET_KEY;
@@ -38,6 +40,7 @@ export async function POST(request: Request) {
     email: string;
     pageCount: number;
     locale: string;
+    company: CompanyBilling | null;
   };
 
   try {
@@ -46,7 +49,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const { sessionId, email, pageCount, locale } = body;
+  const { sessionId, email, pageCount, locale, company } = body;
 
   if (!sessionId || !email || !pageCount) {
     return NextResponse.json(
@@ -73,7 +76,11 @@ export async function POST(request: Request) {
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     customer_email: email,
-    metadata: { sessionId, email },
+    metadata: {
+      sessionId,
+      email,
+      ...(company ? { company: JSON.stringify(company) } : {}),
+    },
     line_items: [
       {
         price_data: {
@@ -81,9 +88,9 @@ export async function POST(request: Request) {
           product_data: {
             name: "PDF/Image to EPUB Conversion",
           },
-          unit_amount: 20, // 0.20 EUR in cents
+          unit_amount: getPricePerPageCents(),
         },
-        quantity: Math.max(20, pageCount),
+        quantity: Math.max(getMinimumPages(), pageCount),
       },
     ],
     success_url: successUrl,

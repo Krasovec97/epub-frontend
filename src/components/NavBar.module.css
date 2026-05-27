@@ -12,7 +12,7 @@
   max-width: 1080px;
   margin: 0 auto;
   padding: 0 2rem;
-  height: 58px;
+  height: 62px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,19 +21,20 @@
 .brand {
   display: flex;
   align-items: baseline;
-  gap: 0.55rem;
+  gap: 0.6rem;
   font-family: var(--serif);
-  font-size: 1.05rem;
-  font-weight: 400;
-  letter-spacing: 0.04em;
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-variation-settings: "SOFT" 80, "opsz" 14, "wght" 700;
+  letter-spacing: -0.01em;
   color: var(--paper);
   user-select: none;
 }
 
 .brandMark {
   color: var(--gold);
-  font-size: 0.55rem;
+  font-size: 0.6rem;
   line-height: 1;
   position: relative;
-  top: -0.05rem;
+  top: -0.15rem;
 }

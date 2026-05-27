@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --experimental-https",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "@remotion/cli": "^4.0.468",
+    "@remotion/player": "^4.0.468",
     "bootstrap": "^5.3.8",
     "jscanify": "^1.4.2",
     "next": "16.2.3",
@@ -16,6 +18,7 @@
     "qrcode": "^1.5.4",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "remotion": "^4.0.468",
     "stripe": "^22.0.1"
   },
   "devDependencies": {

@@ -1,9 +1,11 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import HeroAnimation from "@/components/HeroAnimation";
 import HowItWorks from "@/components/HowItWorks";
 import PricingCard from "@/components/PricingCard";
 import DesktopHandoff from "@/components/DesktopHandoff";
 import { getIsMobile, getCurrentUrl } from "@/lib/request-context";
+import { getPricePerPageEur, getMinimumPages, formatEur } from "@/lib/pricing";
 import styles from "./page.module.css";
 
 export default async function HomePage({
@@ -16,10 +18,17 @@ export default async function HomePage({
   const t = await getTranslations("HomePage");
   const isMobile = await getIsMobile();
 
+  const pricePerPage = getPricePerPageEur();
+  const minimumPages = getMinimumPages();
+  const minimumTotal = pricePerPage * minimumPages;
+
   return (
     <main>
       <section className={styles.hero}>
         <div className={styles.heroInner}>
+          <div className={styles.heroAnim}>
+            <HeroAnimation />
+          </div>
           <p className={styles.eyebrow}>BOOK → EPUB</p>
           <h1 className={styles.heroTitle}>{t("hero.title")}</h1>
           <p className={styles.heroSub}>{t("hero.subtitle")}</p>
@@ -57,9 +66,13 @@ export default async function HomePage({
         <div className={styles.sectionInner}>
           <PricingCard
             heading={t("pricing.heading")}
-            price={t("pricing.price")}
+            price={t("pricing.price", { price: formatEur(pricePerPage, locale) })}
             perPage={t("pricing.perPage")}
-            minimumNote={t("pricing.minimumNote")}
+            vatNote={t("pricing.vatNote")}
+            minimumNote={t("pricing.minimumNote", {
+              pages: minimumPages,
+              total: formatEur(minimumTotal, locale),
+            })}
             paymentNote={t("pricing.paymentNote")}
           />
         </div>

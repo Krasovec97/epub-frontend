@@ -2,7 +2,27 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import type { CompanyBilling } from "@/lib/billing";
+import { formatEur } from "@/lib/pricing";
 import styles from "./ConvertStepper.module.css";
+
+const EMPTY_COMPANY: CompanyBilling = {
+  companyName: "",
+  vatId: "",
+  addressLine: "",
+  postalCode: "",
+  city: "",
+  country: "",
+};
+
+const COMPANY_FIELDS: (keyof CompanyBilling)[] = [
+  "companyName",
+  "vatId",
+  "addressLine",
+  "postalCode",
+  "city",
+  "country",
+];
 
 type Step = 1 | 2 | 3;
 type ActionStatus = "idle" | "loading" | "error";
@@ -29,6 +49,8 @@ interface ConvertStepperProps {
   sessionId: string;
   pageCount: number;
   initialStep: Step;
+  pricePerPageEur: number;
+  minimumPages: number;
 }
 
 // exported for the page component
@@ -38,26 +60,46 @@ export default function ConvertStepper({
   sessionId,
   pageCount,
   initialStep,
+  pricePerPageEur,
+  minimumPages,
 }: ConvertStepperProps) {
   const t = useTranslations("ConvertPage");
   const locale = useLocale();
   const [step, setStep] = useState<Step>(initialStep);
   const [email, setEmail] = useState<string>("");
+  const [isCompany, setIsCompany] = useState<boolean>(false);
+  const [company, setCompany] = useState<CompanyBilling>(EMPTY_COMPANY);
   const [status, setStatus] = useState<ActionStatus>("idle");
 
-  const billedPages = Math.max(20, pageCount);
-  const price = (billedPages * 0.2).toFixed(2);
-  const showMinimumNote = pageCount < 20;
+  const billedPages = Math.max(minimumPages, pageCount);
+  const price = formatEur(billedPages * pricePerPageEur, locale);
+  const showMinimumNote = pageCount < minimumPages;
+
+  const companyComplete = COMPANY_FIELDS.every(
+    (field) => company[field].trim() !== "",
+  );
+  const canPay = email.trim() !== "" && (!isCompany || companyComplete);
+
+  function updateCompany(field: keyof CompanyBilling, value: string) {
+    setCompany((prev) => ({ ...prev, [field]: value }));
+    if (status === "error") setStatus("idle");
+  }
 
   async function handlePay() {
-    if (!email || status === "loading") return;
+    if (!canPay || status === "loading") return;
     setStatus("loading");
 
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sessionId, email, pageCount, locale }),
+        body: JSON.stringify({
+          sessionId,
+          email,
+          pageCount,
+          locale,
+          company: isCompany ? company : null,
+        }),
       });
 
       if (!res.ok) {
@@ -135,6 +177,36 @@ export default function ConvertStepper({
             }}
           />
 
+          <label className={styles.companyToggle}>
+            <input
+              type="checkbox"
+              checked={isCompany}
+              onChange={(e) => {
+                setIsCompany(e.target.checked);
+                if (status === "error") setStatus("idle");
+              }}
+            />
+            {t("billing.companyToggle")}
+          </label>
+
+          {isCompany &&
+            COMPANY_FIELDS.map((field) => (
+              <div key={field}>
+                <label className={styles.label} htmlFor={field}>
+                  {t(`billing.${field}`)}
+                </label>
+                <input
+                  id={field}
+                  type="text"
+                  required
+                  className={styles.input}
+                  placeholder={t(`billing.${field}Placeholder`)}
+                  value={company[field]}
+                  onChange={(e) => updateCompany(field, e.target.value)}
+                />
+              </div>
+            ))}
+
           {status === "error" && (
             <p className={styles.errorText}>{t("billing.error")}</p>
           )}
@@ -142,7 +214,7 @@ export default function ConvertStepper({
           <button
             type="button"
             className={styles.primaryBtn}
-            disabled={!email || status === "loading"}
+            disabled={!canPay || status === "loading"}
             onClick={handlePay}
           >
             {status === "loading" ? t("billing.paying") : t("billing.pay")}
@@ -178,9 +250,10 @@ function ConfirmationCard({
     kind: "processing",
     elapsed: 0,
   });
-  const startRef = useRef<number>(Date.now());
+  const startRef = useRef<number | null>(null);
 
   useEffect(() => {
+    startRef.current = Date.now();
     let cancelled = false;
     let timeoutId: ReturnType<typeof setTimeout> | null = null;
 
@@ -212,7 +285,7 @@ function ConfirmationCard({
         }
         setPollState({
           kind: "processing",
-          elapsed: Math.floor((Date.now() - startRef.current) / 1000),
+          elapsed: Math.floor((Date.now() - (startRef.current ?? Date.now())) / 1000),
         });
         schedule();
       } catch {

@@ -4,6 +4,7 @@ interface PricingCardProps {
   heading: string;
   price: string;
   perPage: string;
+  vatNote: string;
   minimumNote: string;
   paymentNote: string;
 }
@@ -12,6 +13,7 @@ export default function PricingCard({
   heading,
   price,
   perPage,
+  vatNote,
   minimumNote,
   paymentNote,
 }: PricingCardProps) {
@@ -22,6 +24,7 @@ export default function PricingCard({
         <span className={styles.price}>{price}</span>
         <span className={styles.perPage}>{perPage}</span>
       </div>
+      <p className={styles.vatNote}>{vatNote}</p>
       <div className={styles.rule} aria-hidden="true" />
       <p className={styles.note}>{minimumNote}</p>
       <p className={styles.note}>{paymentNote}</p>

@@ -28,9 +28,10 @@
     },
     "pricing": {
       "heading": "Simple pricing",
-      "price": "0.20 EUR",
+      "price": "{price} EUR",
       "perPage": "per page",
-      "minimumNote": "Minimum charge: 20 pages (4.00 EUR)",
+      "vatNote": "VAT included",
+      "minimumNote": "Minimum charge: {pages} pages ({total} EUR)",
       "paymentNote": "Payment via Stripe after processing. No account required."
     }
   },
@@ -136,14 +137,27 @@
       "pay": "Pay with Stripe",
       "paying": "Redirecting…",
       "back": "Back",
-      "error": "Something went wrong. Please try again."
+      "error": "Something went wrong. Please try again.",
+      "companyToggle": "Pay as a company (business invoice)",
+      "companyName": "Company name",
+      "companyNamePlaceholder": "Acme Ltd.",
+      "vatId": "VAT / tax ID",
+      "vatIdPlaceholder": "SI12345678",
+      "addressLine": "Address",
+      "addressLinePlaceholder": "1 Main Street",
+      "postalCode": "Postal code",
+      "postalCodePlaceholder": "1000",
+      "city": "City",
+      "cityPlaceholder": "Ljubljana",
+      "country": "Country",
+      "countryPlaceholder": "Slovenia"
     },
     "confirmation": {
       "heading": "All done",
       "body": "Payment received. Processing has started. You'll receive your EPUB at {email} shortly.",
       "note": "You can close this page.",
       "processingHeading": "Converting your book",
-      "processingBody": "Processing your scans into an EPUB. This usually takes a minute or two.",
+      "processingBody": "We are converting your images to EPUB. You can close this page, and you'll receive an email with the EPUB file once it's ready.",
       "processingAria": "Processing in progress",
       "elapsed": "{seconds}s elapsed",
       "readyHeading": "Your EPUB is ready",

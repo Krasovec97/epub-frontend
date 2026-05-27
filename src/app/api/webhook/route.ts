@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import type { CompanyBilling } from "@/lib/billing";
 
 function getStripe() {
   const key = process.env.STRIPE_SECRET_KEY;
@@ -39,13 +40,23 @@ export async function POST(request: Request) {
     const sessionId = session.metadata?.sessionId;
     const email = session.metadata?.email;
 
+    const companyRaw = session.metadata?.company;
+    let company: CompanyBilling | null = null;
+    if (companyRaw) {
+      try {
+        company = JSON.parse(companyRaw) as CompanyBilling;
+      } catch {
+        company = null;
+      }
+    }
+
     if (sessionId && email) {
       const backendUrl = process.env.BACKEND_BASE_URL;
       if (backendUrl) {
         await fetch(`${backendUrl}/sessions/${sessionId}/process`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
+          body: JSON.stringify({ email, company }),
         }).catch((err: unknown) => {
           console.error("Failed to trigger backend processing:", err);
         });
