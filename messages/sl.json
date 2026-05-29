@@ -49,6 +49,13 @@
       "warning4": "Telefon držite mirno in vodoravno; dobra osvetlitev pomaga.",
       "start": "Vklopi kamero"
     },
+    "loading": "Nalaganje…",
+    "resume": {
+      "heading": "Nadaljujete zadnjo sejo?",
+      "body": "Imate aktivno sejo z {count} zajetimi slikami.",
+      "continue": "Nadaljuj zadnjo sejo",
+      "drop": "Zavrzi in začni znova"
+    },
     "camera": {
       "shutter": "Zajemi",
       "done": "Končano",
@@ -83,8 +90,17 @@
       "finish": "Končaj in pošlji",
       "uploading": "Nalaganje…",
       "uploadError": "Nalaganje ni uspelo. Poskusite znova.",
+      "waitUploads": "Nekatere strani se še nalagajo — počakajte trenutek.",
+      "retryFailed": "Ponovi {count} neuspelih nalaganj",
+      "moveUp": "Premakni naprej",
+      "moveDown": "Premakni nazaj",
+      "status": {
+        "uploading": "Pošiljanje",
+        "queued": "V vrsti",
+        "failed": "Neuspešno"
+      },
       "empty": "Še nobena stran ni zajeta.",
-      "coverBadge": "Ovitek",
+      "coverBadge": "Platnica",
       "qualityFlag": "Nizka kakovost",
       "qualityIssue": {
         "dark": "Temno",

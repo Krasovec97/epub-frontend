@@ -49,6 +49,13 @@
       "warning4": "Hold the phone flat; good lighting and a steady hand help.",
       "start": "Start camera"
     },
+    "loading": "Loading…",
+    "resume": {
+      "heading": "Continue last session?",
+      "body": "You still have an active session with {count} images captured.",
+      "continue": "Continue last session",
+      "drop": "Discard & start over"
+    },
     "camera": {
       "shutter": "Capture",
       "done": "Done",
@@ -83,6 +90,15 @@
       "finish": "Finish & send",
       "uploading": "Uploading…",
       "uploadError": "Upload failed. Please try again.",
+      "waitUploads": "Some pages are still uploading — please wait a moment.",
+      "retryFailed": "Retry {count} failed upload(s)",
+      "moveUp": "Move earlier",
+      "moveDown": "Move later",
+      "status": {
+        "uploading": "Sending",
+        "queued": "Queued",
+        "failed": "Failed"
+      },
       "empty": "No pages captured yet.",
       "coverBadge": "Cover",
       "qualityFlag": "Quality issue",
