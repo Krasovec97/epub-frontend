@@ -144,7 +144,7 @@ export default function ConvertStepper({
           </dl>
 
           {showMinimumNote && (
-            <p className={styles.note}>{t("summary.minimumNote")}</p>
+            <p className={styles.note}>{t("summary.minimumNote", { pages: minimumPages })}</p>
           )}
 
           <button

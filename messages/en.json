@@ -101,7 +101,7 @@
       "cta": "Start a scan",
       "included": "Included",
       "rowMinimum": "Minimum charge",
-      "rowMinimumValue": "{pages} pages · {total} €",
+      "rowMinimumValue": "{pages, plural, one {# page} other {# pages}} · {total} €",
       "rowExample": "A {pages}-page paperback",
       "rowCover": "Cover capture & cropping",
       "rowOcr": "OCR and EPUB assembly",
@@ -170,7 +170,7 @@
     "loading": "Loading…",
     "resume": {
       "heading": "Continue last session?",
-      "body": "You still have an active session with {count} images captured.",
+      "body": "Your active session has {count, plural, one {# captured page} other {# captured pages}}.",
       "continue": "Continue last session",
       "drop": "Discard & start over"
     },
@@ -178,7 +178,7 @@
       "shutter": "Capture",
       "done": "Done",
       "back": "Back",
-      "counter": "{count} captured",
+      "counter": "{count, plural, one {# page captured} other {# pages captured}}",
       "permissionDenied": "Camera permission denied. Enable it in your browser settings and reload.",
       "noCamera": "No camera available on this device.",
       "insecureContext": "The camera is only available over HTTPS (or on localhost). Open this page via a secure URL and try again.",
@@ -201,7 +201,7 @@
     },
     "review": {
       "heading": "Review pages",
-      "count": "{count} pages",
+      "count": "{count, plural, one {# page} other {# pages}}",
       "retake": "Retake",
       "delete": "Delete",
       "addAnother": "Add another",
@@ -209,7 +209,7 @@
       "uploading": "Uploading…",
       "uploadError": "Upload failed. Please try again.",
       "waitUploads": "Some pages are still uploading — please wait a moment.",
-      "retryFailed": "Retry {count} failed upload(s)",
+      "retryFailed": "{count, plural, one {Retry # failed upload} other {Retry # failed uploads}}",
       "moveUp": "Move earlier",
       "moveDown": "Move later",
       "status": {
@@ -259,9 +259,9 @@
     "step": "{current} / {total}",
     "summary": {
       "heading": "Your scan",
-      "pages": "{count} pages",
-      "price": "{amount} EUR",
-      "minimumNote": "20-page minimum applied",
+      "pages": "{count, plural, one {# page} other {# pages}}",
+      "price": "{amount} €",
+      "minimumNote": "{pages}-page minimum applied",
       "continue": "Continue"
     },
     "billing": {
