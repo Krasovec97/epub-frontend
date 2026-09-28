@@ -1,0 +1,167 @@
+/* The hero's "instrument panel": a white sheet on the cool ground, with
+   registration ticks at opposite corners. */
+.panel {
+  position: relative;
+  margin: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-panel);
+}
+
+.panel::before,
+.panel::after {
+  content: '';
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--line-2);
+}
+
+.panel::before {
+  top: -1px;
+  left: -1px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.panel::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: 0;
+  border-top: 0;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.phase {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 0.86;
+  overflow: hidden;
+  /* Explicit zero-alpha end stop: fading to the `transparent` keyword can
+     interpolate through transparent-black and grey the wash in Safari. */
+  background: radial-gradient(
+    ellipse 60% 55% at 50% 48%,
+    rgba(29, 78, 216, 0.07),
+    rgba(29, 78, 216, 0) 70%
+  );
+}
+
+.anim {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 420px;
+  height: 420px;
+  transform-origin: center center;
+}
+
+/* ── Step rail ── */
+.rail {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+}
+
+.item {
+  position: relative;
+  padding: 0.95rem 1rem 1.1rem;
+  border-left: 1px solid var(--line);
+}
+
+.item:first-child {
+  border-left: 0;
+}
+
+.num {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.25s ease;
+}
+
+.title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-top: 0.3rem;
+  color: var(--ink-3);
+  transition: color 0.25s ease;
+}
+
+.desc {
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--ink-3);
+  margin-top: 0.35rem;
+  opacity: 0.72;
+  transition: opacity 0.25s ease, color 0.25s ease;
+}
+
+.track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--line);
+}
+
+.fill {
+  height: 100%;
+  background: var(--primary);
+}
+
+.item[data-active='true'] .num {
+  color: var(--primary);
+}
+
+.item[data-active='true'] .title {
+  color: var(--ink);
+}
+
+.item[data-active='true'] .desc {
+  opacity: 1;
+  color: var(--ink-2);
+}
+
+@media (max-width: 560px) {
+  .rail {
+    grid-template-columns: 1fr;
+  }
+
+  .item {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .item:first-child {
+    border-top: 0;
+  }
+}

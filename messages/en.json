@@ -1,45 +1,163 @@
 {
   "HomePage": {
     "title": "Pergament",
-    "subtitle": "Hello — Bootstrap and localisation are working.",
-    "hero": {
-      "title": "Scan a book into a clean EPUB",
-      "subtitle": "Open this on your phone, photograph each page inside the guide, and we'll email you the finished EPUB.",
-      "cta": "Start scanning"
+    "nav": {
+      "label": "Main",
+      "how": "How it works",
+      "pricing": "Pricing",
+      "faq": "Questions",
+      "start": "Start a scan"
     },
-    "howItWorks": {
-      "heading": "How it works",
+    "hero": {
+      "eyebrow": "Print → EPUB 3",
+      "title": "Turn a printed backlist into <em>clean EPUB</em>.",
+      "subtitle": "Photograph each page with a phone. We straighten, clean and read every shot, assemble the book, and email you the EPUB. No software, no account, no per-seat licence.",
+      "cta": "Start a scan",
+      "ctaSecondary": "See the price list",
+      "perPage": "page",
+      "minimum": "{pages}-page minimum",
+      "vat": "VAT included",
+      "languages": "Slovene & English"
+    },
+    "panel": {
+      "label": "Pipeline preview",
+      "alt": "Looping animation: a book's pages turn, a page is scanned under a lens, and the finished EPUB is read on a phone.",
+      "allPhases": "All three stages",
+      "phase1": "01 / Capture",
+      "phase2": "02 / Process",
+      "phase3": "03 / Deliver"
+    },
+    "steps": {
       "step1": {
-        "title": "Open on phone",
-        "desc": "Scan the QR code or open this site on your phone to use the camera."
+        "title": "Scan the book",
+        "desc": "One photo per page, guided by an on-screen frame."
       },
       "step2": {
-        "title": "Scan each page",
-        "desc": "Line up each page inside the guide rectangle, skipping page numbers and margins."
+        "title": "Wait while we process",
+        "desc": "Deskew, de-shadow, OCR, assemble. Close the tab."
       },
       "step3": {
-        "title": "Pay & receive",
-        "desc": "Pay securely via Stripe and receive the finished EPUB in your inbox."
+        "title": "Open your EPUB",
+        "desc": "Reflowable EPUB 3 in your inbox, ready to read."
+      }
+    },
+    "why": {
+      "eyebrow": "Built for small presses",
+      "heading": "Everything a rights team needs, nothing it has to install.",
+      "body": "Pergament exists for the titles that never got digitised: out-of-print stock, regional imprints, a single archive copy on the shelf.",
+      "v1": {
+        "title": "The phone is the scanner",
+        "desc": "No flatbed, no rig, no capture station. Any recent phone camera is enough."
+      },
+      "v2": {
+        "title": "Shot quality checked live",
+        "desc": "Blur, motion, shadow and exposure are flagged in the viewfinder, before you move on."
+      },
+      "v3": {
+        "title": "Reflowable EPUB 3",
+        "desc": "Text that resizes on any reader, with the cover you cropped as the title image."
+      },
+      "v4": {
+        "title": "Business invoice on request",
+        "desc": "Company name, VAT ID and address go on the Stripe receipt. Pay per page, per title."
+      }
+    },
+    "howItWorks": {
+      "eyebrow": "What happens to a page",
+      "heading": "Three stages, and you only work during the first one.",
+      "step1": {
+        "stage": "Stage 01",
+        "title": "Scan the book",
+        "desc": "Open Pergament on a phone — or scan the QR code from your desktop. Shoot the cover first, then one photo per page, in order.",
+        "b1": "A fixed 1:√2 guide keeps every page the same shape",
+        "b2": "Drag the cover's corners to square it up",
+        "b3": "Reorder, retake or delete pages before you send"
+      },
+      "step2": {
+        "stage": "Stage 02",
+        "title": "Wait while we process",
+        "desc": "Uploads start as you shoot, so the queue is usually empty by the time you finish. Then the pipeline runs without you.",
+        "b1": "Perspective correction and page straightening",
+        "b2": "Tesseract OCR into selectable, searchable text",
+        "b3": "Reading order and chapters rebuilt into EPUB"
+      },
+      "step3": {
+        "stage": "Stage 03",
+        "title": "Open your EPUB",
+        "desc": "Pay with Stripe, and the finished file is emailed to the address on the receipt. A download link stays live for seven days.",
+        "b1": "Sent as an attachment and a download link",
+        "b2": "Opens in Apple Books, Calibre, Kobo, Thorium",
+        "b3": "Nothing kept after the link expires"
       }
     },
     "start": {
-      "heading": "Ready to scan",
+      "eyebrow": "Start now",
+      "heading": "Ready when you are.",
       "mobileCta": "Start scanning"
     },
     "pricing": {
-      "heading": "Simple pricing",
-      "price": "{price} EUR",
-      "perPage": "per page",
-      "vatNote": "VAT included",
-      "minimumNote": "Minimum charge: {pages} pages ({total} EUR)",
-      "paymentNote": "Payment via Stripe after processing. No account required."
+      "eyebrow": "Price list",
+      "unit": "per scanned page, VAT included",
+      "cta": "Start a scan",
+      "included": "Included",
+      "rowMinimum": "Minimum charge",
+      "rowMinimumValue": "{pages} pages · {total} €",
+      "rowExample": "A {pages}-page paperback",
+      "rowCover": "Cover capture & cropping",
+      "rowOcr": "OCR and EPUB assembly",
+      "rowDelivery": "Email delivery",
+      "rowWindow": "Download window",
+      "rowWindowValue": "7 days",
+      "rowAccount": "Account required",
+      "rowAccountValue": "No",
+      "rowPayment": "Payment",
+      "rowPaymentValue": "Stripe · card",
+      "note": "Charged once, after your pages are uploaded and counted — never before. Business customers can add a company name, VAT ID and address to the receipt at checkout."
+    },
+    "faq": {
+      "eyebrow": "Questions",
+      "heading": "The things publishers ask first.",
+      "q1": {
+        "q": "Why does scanning happen on a phone and not my desktop?",
+        "a": "The capture step needs a camera you can hold over a page, plus a live guide that tells you when a shot is too dark, too bright, blurred or shadowed. A phone has both. On desktop you get a QR code that hands the session over to your phone; everything after capture — payment, receipt, delivery — is fine on either."
+      },
+      "q2": {
+        "q": "How good is the text recognition?",
+        "a": "Clean, well-lit body text in Slovene or English comes through reliably. Heavily set display type, tables, footnotes and marginalia are where OCR gets rough — so review anything typographically unusual before you publish it. The original page images stay in the file, so nothing is lost."
+      },
+      "q3": {
+        "q": "Do I need to remove page numbers and running heads?",
+        "a": "Keep them outside the guide frame when you shoot. The guide is sized so that framing the text block alone is the natural thing to do, which keeps headers and folios out of the recognised text."
+      },
+      "q4": {
+        "q": "Can I stop halfway and come back?",
+        "a": "Yes. The session is held on the phone that started it, so if you put it down mid-book you'll be offered the choice to carry on where you left off."
+      },
+      "q5": {
+        "q": "Who is responsible for the rights?",
+        "a": "You are. Pergament is a conversion tool, not a licence — only scan books you hold the rights to, or that are in the public domain."
+      }
+    },
+    "closing": {
+      "eyebrow": "Start now",
+      "heading": "Pick a book off the shelf. You'll have the EPUB today.",
+      "cta": "Start a scan",
+      "ctaSecondary": "Read the questions first"
+    },
+    "footer": {
+      "label": "Footer",
+      "rights": "© 2026 Pergament · pergament.si",
+      "pricing": "Pricing",
+      "faq": "Questions"
     }
   },
   "ScanPage": {
     "desktop": {
-      "heading": "Continue on your phone",
-      "body": "The scanner needs a phone camera. Scan the QR code below or open this URL on your mobile device.",
-      "urlLabel": "Or visit:"
+      "heading": "The scanner needs a phone camera.",
+      "body": "Scan the QR code with your phone, or open the address below on it. Your session, payment and delivery all carry over.",
+      "urlLabel": "Or open this address:",
+      "eyebrow": "Continue on your phone",
+      "qrAlt": "QR code linking to the Pergament scanner"
     },
     "intro": {
       "heading": "Before you start",

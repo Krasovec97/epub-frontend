@@ -1,0 +1,486 @@
+<title>Pergament Ledger</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,0..100;1,9..144,400..600,0..100&display=swap">
+<style>
+:root{
+  --paper:#ffffff; --paper-2:#f4f8fd; --paper-3:#e9f0f9;
+  --ink:#0b2545; --ink-2:#46597a; --ink-3:#6d7f9d;
+  --line:#e1e9f3; --line-2:#c7d5e8;
+  --navy:#0b2545; --navy-2:#123259;
+  --on-navy:#e9f0fa; --on-navy-2:#9db4d3; --on-navy-line:#1e4370;
+  --primary:#1b6fe0; --primary-ink:#ffffff; --primary-soft:#e5eefb; --primary-deep:#12529f;
+  --cyan:#0e7f96;
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --sans:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --a-paper:#fff; --a-shade:#eaf1fa; --a-edge:#c6d6ea; --a-ink:#0b2545;
+  --a-accent:#1b6fe0; --a-frame:#0b2545; --a-frame-line:#22456f;
+  --gut:clamp(1.15rem,4vw,2.5rem);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#08101d; --paper-2:#0d1727; --paper-3:#132134;
+    --ink:#e6eefa; --ink-2:#a2b5d1; --ink-3:#8297b8;
+    --line:#1b2a40; --line-2:#263955;
+    --navy:#050b15; --navy-2:#0d1e33;
+    --on-navy:#e6eefa; --on-navy-2:#93aac9; --on-navy-line:#1a3050;
+    --primary:#74a5f3; --primary-ink:#050b15; --primary-soft:#122a44; --primary-deep:#a3c4fb;
+    --cyan:#4cc0d6;
+    --a-paper:#f1f6fd; --a-shade:#dae5f4; --a-edge:#a5bcda; --a-ink:#0b2545;
+    --a-accent:#3d7ae0; --a-frame:#02070e; --a-frame-line:#14283f;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#08101d; --paper-2:#0d1727; --paper-3:#132134;
+  --ink:#e6eefa; --ink-2:#a2b5d1; --ink-3:#8297b8;
+  --line:#1b2a40; --line-2:#263955;
+  --navy:#050b15; --navy-2:#0d1e33;
+  --on-navy:#e6eefa; --on-navy-2:#93aac9; --on-navy-line:#1a3050;
+  --primary:#74a5f3; --primary-ink:#050b15; --primary-soft:#122a44; --primary-deep:#a3c4fb;
+  --cyan:#4cc0d6;
+  --a-paper:#f1f6fd; --a-shade:#dae5f4; --a-edge:#a5bcda; --a-ink:#0b2545;
+  --a-accent:#3d7ae0; --a-frame:#02070e; --a-frame-line:#14283f;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{
+  font-family:var(--serif);font-weight:600;line-height:1.1;letter-spacing:-.018em;
+  font-variation-settings:"SOFT" 40,"opsz" 96;text-wrap:balance;margin:0;
+}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 var(--gut)}
+.label{font-size:.66rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan)}
+.label-q{font-size:.66rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.78rem 1.5rem;font-family:var(--sans);font-size:.875rem;font-weight:600;
+  letter-spacing:.01em;text-decoration:none;cursor:pointer;border:1.5px solid transparent;
+  transition:background .18s ease,color .18s ease,border-color .18s ease;
+}
+.btn-p{background:var(--primary);color:var(--primary-ink);border-color:var(--primary)}
+.btn-p:hover{background:var(--primary-deep);border-color:var(--primary-deep)}
+.btn-o{background:transparent;color:var(--ink);border-color:var(--line-2)}
+.btn-o:hover{border-color:var(--primary);color:var(--primary)}
+.btn-n{background:transparent;color:var(--on-navy);border-color:var(--on-navy-line)}
+.btn-n:hover{background:var(--on-navy);color:var(--navy);border-color:var(--on-navy)}
+.btn-sm{padding:.52rem 1.05rem;font-size:.8rem}
+
+/* ── utility strip + header ── */
+.strip{background:var(--navy);color:var(--on-navy-2)}
+.strip-in{display:flex;align-items:center;gap:1.2rem;height:34px;font-size:.74rem;letter-spacing:.02em}
+.strip-in .sep{color:var(--on-navy-line)}
+.strip-in .locale{margin-left:auto;display:flex;gap:.9rem;font-weight:600}
+.strip-in .locale a{text-decoration:none}
+.strip-in .locale a[aria-current]{color:var(--on-navy)}
+
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 90%,transparent);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.hbar{display:flex;align-items:center;gap:1.6rem;height:66px}
+.brand{display:flex;align-items:baseline;gap:.55rem;text-decoration:none;margin-right:auto}
+.brand em{
+  font-family:var(--serif);font-style:normal;font-size:1.32rem;font-weight:600;
+  font-variation-settings:"SOFT" 80,"opsz" 40;letter-spacing:-.01em;
+}
+.brand small{font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+nav.links{display:flex;gap:1.7rem;font-size:.85rem;font-weight:500;color:var(--ink-2)}
+nav.links a{text-decoration:none;padding-bottom:2px;border-bottom:1.5px solid transparent}
+nav.links a:hover{color:var(--ink);border-bottom-color:var(--primary)}
+
+/* ── hero ── */
+.hero{padding:clamp(3rem,6.5vw,5rem) 0 0;text-align:center}
+.hero h1{font-size:clamp(2.4rem,5.6vw,4.05rem);max-width:21ch;margin:1.15rem auto 0;
+  font-variation-settings:"SOFT" 30,"opsz" 144}
+.hero h1 i{font-style:italic;color:var(--primary);font-variation-settings:"SOFT" 60,"opsz" 144}
+.lede{font-size:clamp(1.01rem,1.5vw,1.15rem);color:var(--ink-2);max-width:60ch;margin:1.25rem auto 0}
+.cta-row{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin-top:1.9rem}
+
+/* workbench */
+.bench{margin-top:clamp(2.2rem,5vw,3.2rem);background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bench-head{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.8rem 0;border-bottom:1px solid var(--line);
+}
+.bench-head .status{display:flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--primary);font-variant-numeric:tabular-nums}
+.bench-head .status i{width:7px;height:7px;border-radius:50%;background:var(--primary);flex:none}
+.stage{
+  width:100%;max-width:640px;margin:0 auto;aspect-ratio:1/.84;
+  background:radial-gradient(ellipse 58% 52% at 50% 48%,color-mix(in srgb,var(--primary) 7%,transparent),transparent 72%);
+}
+
+/* step columns joined by a rail */
+.rail-wrap{position:relative;padding-bottom:clamp(2rem,4vw,3rem)}
+.rail-line{position:relative;height:1px;background:var(--line-2);margin:0 0 0}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.col{position:relative;padding:1.6rem 1.6rem 0;border-left:1px solid var(--line)}
+.col:first-child{border-left:0;padding-left:0}
+.col:last-child{padding-right:0}
+.node{
+  position:absolute;top:-5px;left:1.6rem;width:9px;height:9px;border-radius:50%;
+  background:var(--paper-2);border:1.5px solid var(--line-2);
+  transition:background .3s ease,border-color .3s ease,transform .3s ease;
+}
+.col:first-child .node{left:0}
+.col h3{font-size:1.32rem;margin-top:.7rem;font-variation-settings:"SOFT" 50,"opsz" 48;color:var(--ink-3);transition:color .3s ease}
+.col p{font-size:.875rem;color:var(--ink-3);margin-top:.6rem;max-width:34ch;transition:color .3s ease}
+.col .num{font-family:var(--sans);font-size:.68rem;font-weight:700;letter-spacing:.16em;color:var(--ink-3);font-variant-numeric:tabular-nums;transition:color .3s ease}
+.col .track{height:2px;background:var(--line);margin-top:1.2rem}
+.col .track i{display:block;height:100%;width:0;background:var(--primary);transition:width .1s linear}
+.col[data-active="true"] .node{background:var(--primary);border-color:var(--primary);transform:scale(1.35)}
+.col[data-active="true"] h3{color:var(--ink)}
+.col[data-active="true"] p{color:var(--ink-2)}
+.col[data-active="true"] .num{color:var(--primary)}
+.col[data-done="true"] .node{background:var(--line-2);border-color:var(--line-2)}
+@media (max-width:820px){
+  .cols{grid-template-columns:1fr}
+  .col{border-left:0;padding-left:0;padding-right:0;border-top:1px solid var(--line);padding-top:1.5rem}
+  .col:first-child{border-top:0}
+  .node{left:0}
+}
+
+/* ── figures band ── */
+.figures{background:var(--navy);color:var(--on-navy)}
+.fig-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--on-navy-line)}
+.fig{background:var(--navy);padding:clamp(1.6rem,3.5vw,2.4rem) 1.4rem}
+.fig b{
+  display:block;font-family:var(--serif);font-size:clamp(1.9rem,4vw,2.6rem);font-weight:600;
+  letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums;
+  font-variation-settings:"SOFT" 30,"opsz" 96;
+}
+.fig span{display:block;font-size:.78rem;color:var(--on-navy-2);margin-top:.6rem;letter-spacing:.01em}
+.fig:first-child{padding-left:var(--gut)}
+.fig:last-child{padding-right:var(--gut)}
+@media (max-width:760px){
+  .fig-grid{grid-template-columns:1fr 1fr}
+  .fig:nth-child(odd){padding-left:var(--gut)}
+  .fig:nth-child(even){padding-right:var(--gut)}
+}
+
+/* ── generic section ── */
+section{padding:clamp(3.4rem,6.5vw,5rem) 0}
+.sec-head{max-width:52ch}
+.sec-head h2{font-size:clamp(1.7rem,3.4vw,2.45rem);margin-top:.85rem;font-variation-settings:"SOFT" 35,"opsz" 96}
+.sec-head p{color:var(--ink-2);margin-top:.9rem}
+
+/* use-case list */
+.cases{margin-top:2.6rem;border-top:1px solid var(--line-2)}
+.case{
+  display:grid;grid-template-columns:4.5rem minmax(0,20ch) minmax(0,1fr);gap:1.5rem;
+  padding:1.6rem 0;border-bottom:1px solid var(--line);align-items:baseline;
+}
+.case .n{font-family:var(--serif);font-size:1.7rem;color:var(--line-2);line-height:1;font-variant-numeric:tabular-nums}
+.case h3{font-family:var(--sans);font-size:1rem;font-weight:600;letter-spacing:0}
+.case p{font-size:.9rem;color:var(--ink-2)}
+@media (max-width:760px){.case{grid-template-columns:2.6rem minmax(0,1fr);gap:1rem}.case p{grid-column:2}}
+
+/* honest two-column */
+.candid{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:2.6rem;background:var(--line);border:1px solid var(--line)}
+.candid > div{background:var(--paper);padding:1.7rem 1.6rem}
+.candid h3{font-family:var(--sans);font-size:.95rem;font-weight:600;letter-spacing:0;display:flex;align-items:center;gap:.6rem}
+.candid ul{margin:1.1rem 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.candid li{font-size:.875rem;color:var(--ink-2);display:flex;gap:.65rem;align-items:flex-start}
+.candid li svg{flex:none;margin-top:.3rem}
+.ok svg{color:var(--cyan)}
+.watch svg{color:var(--ink-3)}
+@media (max-width:760px){.candid{grid-template-columns:1fr}}
+
+/* pricing with dotted leaders */
+.price-sec{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.price-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(2rem,5vw,4.5rem);align-items:start}
+.price-amt{
+  font-family:var(--serif);font-size:clamp(3.2rem,7.5vw,4.8rem);font-weight:600;line-height:1;
+  letter-spacing:-.035em;font-variant-numeric:tabular-nums;font-variation-settings:"SOFT" 25,"opsz" 144;
+}
+.price-amt sup{font-size:.33em;vertical-align:.95em;margin-right:.08em}
+.price-note{font-size:.9rem;color:var(--ink-2);margin-top:.7rem;max-width:32ch}
+.ledger{margin:0;border-top:1px solid var(--line-2)}
+.ledger-row{display:flex;align-items:baseline;gap:.5rem;padding:.78rem 0;border-bottom:1px solid var(--line);font-size:.9rem}
+.ledger-row dt{color:var(--ink-2);flex:none;margin:0}
+.ledger-row .leader{flex:1;border-bottom:1px dotted var(--line-2);transform:translateY(-.25em)}
+.ledger-row dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums;flex:none}
+.fine{font-size:.8rem;color:var(--ink-3);margin-top:1.2rem;max-width:56ch}
+@media (max-width:820px){.price-grid{grid-template-columns:1fr}}
+
+/* faq */
+.faq{margin-top:2.4rem;border-top:1px solid var(--line-2)}
+details{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;padding:1.15rem 0;font-size:.95rem;font-weight:600;display:flex;gap:1rem;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'';margin-left:auto;width:8px;height:8px;flex:none;
+  border-right:1.8px solid var(--primary);border-bottom:1.8px solid var(--primary);
+  transform:rotate(45deg);transition:transform .2s ease}
+details[open] summary::after{transform:rotate(-135deg)}
+details p{padding:0 0 1.3rem;color:var(--ink-2);font-size:.9rem;max-width:70ch}
+
+/* closer */
+.closer{background:var(--navy);color:var(--on-navy)}
+.closer-in{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2rem;align-items:center;padding:clamp(2.6rem,5vw,3.8rem) 0}
+.closer h2{font-size:clamp(1.65rem,3.3vw,2.3rem);max-width:28ch;margin-top:.9rem;
+  font-variation-settings:"SOFT" 40,"opsz" 96}
+.closer p{color:var(--on-navy-2);max-width:48ch;margin-top:.9rem;font-size:.92rem}
+.closer .label{color:var(--cyan)}
+@media (max-width:760px){.closer-in{grid-template-columns:1fr}}
+
+footer{background:var(--navy);color:var(--on-navy-2);border-top:1px solid var(--on-navy-line);font-size:.78rem}
+.foot-in{display:flex;flex-wrap:wrap;gap:.8rem 2rem;align-items:center;padding:1.7rem 0}
+.foot-in nav{display:flex;gap:1.4rem;margin-left:auto}
+.foot-in a{text-decoration:none}
+.foot-in a:hover{color:var(--on-navy)}
+@media (max-width:820px){nav.links{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.001ms!important}}
+</style>
+
+<div class="strip">
+  <div class="wrap strip-in">
+    <span>Slovene &amp; English</span>
+    <span class="sep" aria-hidden="true">/</span>
+    <span>VAT invoice on request</span>
+    <span class="sep" aria-hidden="true">/</span>
+    <span>No account required</span>
+    <span class="locale"><a href="#" aria-current="page">SL</a><a href="#">EN</a></span>
+  </div>
+</div>
+
+<header>
+  <div class="wrap hbar">
+    <a class="brand" href="#top"><em>Pergament</em><small>Book → EPUB</small></a>
+    <nav class="links">
+      <a href="#process">Process</a>
+      <a href="#fit">Where it fits</a>
+      <a href="#candid">What to expect</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+    <a class="btn btn-p btn-sm" href="#start">Start a scan</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" id="process" style="padding-bottom:0">
+    <div class="wrap">
+      <p class="label">Digitisation for small publishers</p>
+      <h1>Bring your catalogue back into print, <i>one page at a time</i>.</h1>
+      <p class="lede">Photograph a book with the phone you already carry. Pergament straightens each page, lifts the text, assembles a reflowable EPUB and emails it to you. Twenty cents a page, charged once, after the pages are counted.</p>
+      <div class="cta-row">
+        <a class="btn btn-p" href="#start">Start a scan</a>
+        <a class="btn btn-o" href="#pricing">See the price list</a>
+      </div>
+    </div>
+
+    <div class="bench">
+      <div class="wrap">
+        <div class="bench-head">
+          <span class="label-q">The three stages, running</span>
+          <span class="status"><i aria-hidden="true"></i><span id="status-text">Stage 01 — Capture</span></span>
+        </div>
+        <div class="stage" id="stage" role="img" aria-label="Animated loop: a book's pages turn, a page is scanned under a lens, and the finished EPUB is read on a phone."></div>
+        <div class="rail-wrap">
+          <div class="rail-line"></div>
+          <div class="cols" id="cols">
+            <div class="col" data-active="false" data-done="false">
+              <span class="node" aria-hidden="true"></span>
+              <p class="num">STAGE 01</p>
+              <h3>Scan the book</h3>
+              <p>One photograph per page inside an on-screen guide. Exposure, sharpness, motion and shadow are judged live, so a bad frame never gets past you.</p>
+              <div class="track"><i></i></div>
+            </div>
+            <div class="col" data-active="false" data-done="false">
+              <span class="node" aria-hidden="true"></span>
+              <p class="num">STAGE 02</p>
+              <h3>Wait for the process</h3>
+              <p>Pages upload while you shoot. Then perspective is corrected, the text is recognised, the reading order is rebuilt and the EPUB is assembled — with nothing left for you to do.</p>
+              <div class="track"><i></i></div>
+            </div>
+            <div class="col" data-active="false" data-done="false">
+              <span class="node" aria-hidden="true"></span>
+              <p class="num">STAGE 03</p>
+              <h3>See your EPUB</h3>
+              <p>The finished file is emailed to the address on your receipt, with a download link that stays live for seven days. Open it in any reader.</p>
+              <div class="track"><i></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="figures">
+    <div class="wrap" style="padding:0">
+      <div class="fig-grid">
+        <div class="fig"><b>€0.20</b><span>Per scanned page, VAT included</span></div>
+        <div class="fig"><b>20</b><span>Page minimum, €4.00</span></div>
+        <div class="fig"><b>7</b><span>Days your download link stays live</span></div>
+        <div class="fig"><b>0</b><span>Accounts, licences or installs</span></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="fit">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label">Where it fits</p>
+        <h2>For the titles that never made it to a digital edition.</h2>
+        <p>Pergament was built around the ordinary case: a book exists on paper, the file does not, and commissioning a scanning bureau costs more than the title will earn back.</p>
+      </div>
+      <div class="cases">
+        <div class="case">
+          <span class="n">01</span>
+          <h3>Out-of-print backlist</h3>
+          <p>Titles you still hold the rights to but no longer stock. Scan the archive copy, list the EPUB, and the book is available again without a reprint.</p>
+        </div>
+        <div class="case">
+          <span class="n">02</span>
+          <h3>Regional and small-run imprints</h3>
+          <p>Print runs too small to justify a digitisation contract. Per-page pricing means a 90-page local history costs eighteen euros to convert.</p>
+        </div>
+        <div class="case">
+          <span class="n">03</span>
+          <h3>A single archive copy</h3>
+          <p>One fragile copy that cannot leave the building. Nothing is shipped, nothing is disbound — a phone above the page is the whole apparatus.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="candid" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label">What to expect</p>
+        <h2>An honest account of what the pipeline does well.</h2>
+        <p>Optical recognition is very good at some pages and unreliable on others. You should know which is which before you scan a whole title.</p>
+      </div>
+      <div class="candid">
+        <div class="ok">
+          <h3>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M8 12.3l2.8 2.8L16.2 9.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Comes through cleanly
+          </h3>
+          <ul>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Continuous body text in Slovene or English</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Standard serif and sans text faces at reading size</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Chapter openings and simple paragraph structure</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Covers, once you have squared the corners yourself</li>
+          </ul>
+        </div>
+        <div class="watch">
+          <h3>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.6v6M12 16.4h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            Needs your eye afterwards
+          </h3>
+          <ul>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 12h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>Tables, indexes and multi-column setting</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 12h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>Footnotes, marginalia and running apparatus</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 12h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>Display type, blackletter and heavy letterspacing</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 12h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>Rights clearance — that part stays with you</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="price-sec" id="pricing">
+    <div class="wrap price-grid">
+      <div>
+        <p class="label">Price list</p>
+        <p class="price-amt"><sup>€</sup>0.20</p>
+        <p class="price-note">Per scanned page, VAT included. Charged once through Stripe, after your pages have been uploaded and counted.</p>
+        <a class="btn btn-p" href="#start" style="margin-top:1.5rem">Start a scan</a>
+      </div>
+      <dl class="ledger">
+        <div class="ledger-row"><dt>Minimum charge</dt><span class="leader" aria-hidden="true"></span><dd>20 pages · €4.00</dd></div>
+        <div class="ledger-row"><dt>90-page local history</dt><span class="leader" aria-hidden="true"></span><dd>€18.00</dd></div>
+        <div class="ledger-row"><dt>180-page paperback</dt><span class="leader" aria-hidden="true"></span><dd>€36.00</dd></div>
+        <div class="ledger-row"><dt>320-page novel</dt><span class="leader" aria-hidden="true"></span><dd>€64.00</dd></div>
+        <div class="ledger-row"><dt>Cover capture and cropping</dt><span class="leader" aria-hidden="true"></span><dd>Included</dd></div>
+        <div class="ledger-row"><dt>Text recognition and EPUB assembly</dt><span class="leader" aria-hidden="true"></span><dd>Included</dd></div>
+        <div class="ledger-row"><dt>Email delivery and download link</dt><span class="leader" aria-hidden="true"></span><dd>Included</dd></div>
+        <div class="ledger-row"><dt>Setup, subscription, seats</dt><span class="leader" aria-hidden="true"></span><dd>None</dd></div>
+        <p class="fine">Paying as a company? Add your company name, VAT identification number and address at checkout and they appear on the Stripe receipt.</p>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label-q">Questions</p>
+        <h2>What publishers ask before the first title.</h2>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>Why does capture happen on a phone?</summary>
+          <p>The camera has to be held above a page, and the guide has to warn you in the moment when a frame is too dark, too bright, blurred or shadowed. A phone does both; a desktop does neither. Open the site on a computer and you get a QR code that hands the session to your phone — payment, receipts and delivery work from either device.</p>
+        </details>
+        <details>
+          <summary>Do I have to remove page numbers and running heads?</summary>
+          <p>Frame the text block inside the guide and they fall outside the shot. That keeps folios and headers out of the recognised text without any extra work.</p>
+        </details>
+        <details>
+          <summary>Can I interrupt a book and finish it later?</summary>
+          <p>Yes. The session is held on the phone that started it, so you will be offered the choice to continue where you stopped or begin again.</p>
+        </details>
+        <details>
+          <summary>What happens to the photographs?</summary>
+          <p>They are processed into your EPUB and removed when the seven-day download window closes. Because there are no accounts, there is no archive of past scans to keep, audit or lose.</p>
+        </details>
+        <details>
+          <summary>Who is responsible for the rights?</summary>
+          <p>You are. Pergament is a conversion service, not a licence. Scan only what you hold the rights to, or what is in the public domain.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <div class="closer" id="start">
+    <div class="wrap closer-in">
+      <div>
+        <p class="label">Start with one title</p>
+        <h2>Take a book off the shelf this afternoon.</h2>
+        <p>The twenty-page minimum means a first run costs four euros. If the result is not what you need, you have lost an afternoon and the price of a coffee.</p>
+      </div>
+      <div class="cta-row" style="margin:0">
+        <a class="btn btn-p" href="#">Start a scan</a>
+        <a class="btn btn-n" href="#">Ask about a backlist</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>© 2026 Pergament · pergament.si · Ljubljana</span>
+    <nav><a href="#pricing">Pricing</a><a href="#candid">What to expect</a><a href="#">Terms</a><a href="#">Privacy</a></nav>
+  </div>
+</footer>
+
+<script src="anim.js"></script>
+<script>
+(function(){
+  var cols = Array.prototype.slice.call(document.querySelectorAll('#cols .col'));
+  var tracks = cols.map(function(c){ return c.querySelector('.track i'); });
+  var status = document.getElementById('status-text');
+  var names = ['Stage 01 — Capture','Stage 02 — Process','Stage 03 — Deliver'];
+
+  PergamentHero.mount({
+    el: document.getElementById('stage'),
+    onFrame: function(phase, progress, changed){
+      for (var i=0;i<cols.length;i++){
+        var active = String(i === phase), done = String(i < phase);
+        if (cols[i].dataset.active !== active) cols[i].dataset.active = active;
+        if (cols[i].dataset.done !== done) cols[i].dataset.done = done;
+        tracks[i].style.width = (i < phase ? 100 : i === phase ? progress*100 : 0) + '%';
+      }
+      if (changed) status.textContent = names[phase];
+    },
+    onReduced: function(){
+      cols.forEach(function(c,i){ c.dataset.active='true'; tracks[i].style.width='100%'; });
+      status.textContent = 'All three stages';
+    }
+  });
+})();
+</script>

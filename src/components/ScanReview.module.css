@@ -14,22 +14,20 @@
 .heading {
   font-family: var(--serif);
   font-size: 1.6rem;
-  font-weight: 300;
-  font-style: italic;
-  color: var(--paper);
+  font-weight: 600;
+  color: var(--ink);
 }
 
 .count {
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 0.68rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--paper-mid);
+  color: var(--ink-2);
 }
 
 .empty {
-  font-family: var(--serif);
-  color: var(--paper-mid);
+  color: var(--ink-2);
   text-align: center;
   padding: 2rem 0;
 }
@@ -53,8 +51,8 @@
   position: relative;
   aspect-ratio: 1 / 1.4142;
   overflow: hidden;
-  border: 1px solid var(--gold-border);
-  background: #000;
+  border: 1px solid var(--line-2);
+  background: var(--surface-2);
 }
 
 .thumb {
@@ -68,11 +66,11 @@
   position: absolute;
   top: 0.35rem;
   left: 0.4rem;
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 0.65rem;
   padding: 0.15rem 0.4rem;
-  background: rgba(0, 0, 0, 0.6);
-  color: var(--gold);
+  background: rgba(11, 18, 32, 0.68);
+  color: var(--dark-ink);
   letter-spacing: 0.1em;
 }
 
@@ -83,15 +81,15 @@
   width: 1.25rem;
   height: 1.25rem;
   border-radius: 50%;
-  background: #e0a64a;
-  color: #1b1206;
-  font-family: var(--mono);
+  background: var(--warn);
+  color: #ffffff;
+  font-family: var(--sans);
   font-size: 0.7rem;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9);
 }
 
 .thumb[data-pending] {
@@ -102,24 +100,24 @@
   position: absolute;
   bottom: 0.35rem;
   right: 0.4rem;
-  font-family: var(--mono);
-  font-size: 0.55rem;
+  font-family: var(--sans);
+  font-size: 0.625rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   padding: 0.15rem 0.4rem;
-  color: var(--bg);
+  color: var(--ground);
 }
 
 .statusBadge[data-state="uploading"] {
-  background: var(--gold);
+  background: var(--primary);
 }
 
 .statusBadge[data-state="queued"] {
-  background: var(--paper-mid);
+  background: var(--ink-2);
 }
 
 .statusBadge[data-state="failed"] {
-  background: #d17878;
+  background: var(--danger);
 }
 
 .itemActions {
@@ -130,14 +128,14 @@
 }
 
 .iconBtn {
-  font-family: var(--mono);
-  font-size: 0.62rem;
+  font-family: var(--sans);
+  font-size: 0.688rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 0.35rem 0.45rem;
   background: transparent;
-  border: 1px solid var(--gold-border);
-  color: var(--gold);
+  border: 1px solid var(--line-2);
+  color: var(--primary);
   cursor: pointer;
   flex: 1 1 auto;
 }
@@ -150,27 +148,27 @@
 .retryBtn {
   display: block;
   width: 100%;
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 0.68rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   padding: 0.75rem;
   margin-bottom: 1rem;
   background: transparent;
-  border: 1px solid #d17878;
-  color: #d17878;
+  border: 1px solid var(--danger);
+  color: var(--danger);
   cursor: pointer;
 }
 
 .deleteBtn {
-  font-family: var(--mono);
-  font-size: 0.6rem;
+  font-family: var(--sans);
+  font-size: 0.65rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   padding: 0.35rem;
   background: transparent;
-  border: 1px solid var(--paper-faint);
-  color: var(--paper-mid);
+  border: 1px solid var(--line);
+  color: var(--ink-2);
   cursor: pointer;
   flex: 1 1 auto;
 }
@@ -181,9 +179,9 @@
 }
 
 .errorText {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  color: #d17878;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--danger);
   text-align: center;
   margin-bottom: 1rem;
 }
@@ -194,25 +192,24 @@
   gap: 0.75rem;
   position: sticky;
   bottom: 0;
-  background: linear-gradient(to top, var(--bg) 70%, transparent);
+  background: linear-gradient(to top, var(--ground) 70%, transparent);
   padding-top: 1rem;
 }
 
 .primaryBtn,
 .secondaryBtn {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-size: 0.9rem;
+  font-weight: 600;
   padding: 1rem 1.25rem;
   cursor: pointer;
-  border: 1px solid var(--gold-border);
+  border: 1px solid var(--line-2);
+  border-radius: 3px;
 }
 
 .primaryBtn {
-  background: var(--gold);
-  color: var(--bg);
-  border-color: var(--gold);
+  background: var(--primary);
+  color: var(--ground);
+  border-color: var(--primary);
 }
 
 .primaryBtn:disabled {
@@ -222,7 +219,7 @@
 
 .secondaryBtn {
   background: transparent;
-  color: var(--gold);
+  color: var(--primary);
 }
 
 .secondaryBtn:disabled {

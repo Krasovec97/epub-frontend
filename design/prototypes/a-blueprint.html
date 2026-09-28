@@ -1,0 +1,492 @@
+<title>Pergament Blueprint</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..600&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --ground:#f4f7fb; --surface:#ffffff; --surface-2:#edf2fa;
+  --ink:#0f1d33; --ink-2:#42556f; --ink-3:#5d6f8a;
+  --line:#d7e1f0; --line-2:#becfe6;
+  --primary:#1d4ed8; --primary-ink:#ffffff; --primary-soft:#e4ebfb; --primary-deep:#153da8;
+  --signal:#0e7c5a;
+  --grid:rgba(29,78,216,.055);
+  --a-paper:#fff; --a-shade:#eef3fb; --a-edge:#cbd9ee; --a-ink:#16243a;
+  --a-accent:#1d4ed8; --a-frame:#12203a; --a-frame-line:#2b3d5c;
+  --serif:'Newsreader',Georgia,'Times New Roman',serif;
+  --sans:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --gut:clamp(1.25rem,4vw,2.5rem);
+  --maxw:1180px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0b1220; --surface:#111c2e; --surface-2:#16233a;
+    --ink:#e7eef9; --ink-2:#9fb2cc; --ink-3:#7d92b0;
+    --line:#213048; --line-2:#2c4060;
+    --primary:#7aa2ff; --primary-ink:#0b1220; --primary-soft:#16263f; --primary-deep:#a5c1ff;
+    --signal:#3fc79a;
+    --grid:rgba(122,162,255,.07);
+    --a-paper:#f2f6fd; --a-shade:#dde6f5; --a-edge:#a9bfdd;
+    --a-accent:#3f6fe0; --a-frame:#060c16; --a-frame-line:#1d2b44;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0b1220; --surface:#111c2e; --surface-2:#16233a;
+  --ink:#e7eef9; --ink-2:#9fb2cc; --ink-3:#7d92b0;
+  --line:#213048; --line-2:#2c4060;
+  --primary:#7aa2ff; --primary-ink:#0b1220; --primary-soft:#16263f; --primary-deep:#a5c1ff;
+  --signal:#3fc79a;
+  --grid:rgba(122,162,255,.07);
+  --a-paper:#f2f6fd; --a-shade:#dde6f5; --a-edge:#a9bfdd;
+  --a-accent:#3f6fe0; --a-frame:#060c16; --a-frame-line:#1d2b44;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:var(--sans); font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.12;letter-spacing:-.015em;text-wrap:balance;margin:0}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+.rule{height:1px;background:var(--line);border:0;margin:0}
+
+/* eyebrow / labels */
+.eyebrow{
+  font-size:.688rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--primary);display:flex;align-items:center;gap:.6rem;
+}
+.eyebrow::after{content:'';flex:1;height:1px;background:var(--line-2);max-width:4rem}
+.kicker{font-size:.688rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+
+/* ── header ── */
+header{
+  position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--ground) 88%,transparent);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line);
+}
+.hbar{display:flex;align-items:center;gap:1.5rem;height:62px}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;margin-right:auto}
+.brand svg{flex:none}
+.brand span{font-family:var(--serif);font-size:1.18rem;font-weight:600;letter-spacing:.01em}
+nav.links{display:flex;gap:1.6rem;font-size:.875rem;font-weight:500;color:var(--ink-2)}
+nav.links a{text-decoration:none}
+nav.links a:hover{color:var(--primary)}
+.locale{display:flex;border:1px solid var(--line-2);border-radius:3px;overflow:hidden;font-size:.75rem;font-weight:600}
+.locale a{padding:.28rem .55rem;text-decoration:none;color:var(--ink-3)}
+.locale a[aria-current]{background:var(--ink);color:var(--ground)}
+
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;padding:.72rem 1.3rem;
+  font-family:var(--sans);font-size:.875rem;font-weight:600;text-decoration:none;
+  border-radius:3px;border:1px solid transparent;cursor:pointer;
+  transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease;
+}
+.btn-p{background:var(--primary);color:var(--primary-ink);border-color:var(--primary)}
+.btn-p:hover{background:var(--primary-deep);border-color:var(--primary-deep);transform:translateY(-1px)}
+.btn-g{background:transparent;color:var(--ink);border-color:var(--line-2)}
+.btn-g:hover{border-color:var(--primary);color:var(--primary)}
+.btn-sm{padding:.5rem 1rem;font-size:.82rem}
+
+/* ── hero ── */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:36px 36px;
+  mask-image:radial-gradient(ellipse 80% 70% at 60% 30%,#000 15%,transparent 75%);
+}
+.hero-grid{
+  position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);
+  gap:clamp(2rem,5vw,4.5rem);align-items:center;padding:clamp(3rem,7vw,5.5rem) 0 clamp(3.5rem,7vw,5.5rem);
+}
+h1{font-size:clamp(2.35rem,5.2vw,3.9rem);margin:1.4rem 0 0}
+h1 em{font-style:italic;color:var(--primary)}
+.lede{font-size:clamp(1.02rem,1.5vw,1.16rem);color:var(--ink-2);max-width:34ch;margin-top:1.15rem}
+.cta-row{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+.spec-line{
+  display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;margin-top:1.6rem;padding-top:1.1rem;
+  border-top:1px solid var(--line);font-size:.82rem;color:var(--ink-3);
+  font-variant-numeric:tabular-nums;
+}
+.spec-line b{color:var(--ink);font-weight:600}
+
+/* instrument panel */
+.panel{
+  position:relative;background:var(--surface);border:1px solid var(--line);
+  box-shadow:0 1px 2px rgba(15,29,51,.04),0 18px 44px -28px rgba(15,29,51,.22);
+}
+.panel::before,.panel::after{
+  content:'';position:absolute;width:9px;height:9px;border:1px solid var(--line-2);
+}
+.panel::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.panel::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+.panel-head{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.7rem 1rem;border-bottom:1px solid var(--line);
+}
+.panel-head .kicker{font-size:.625rem}
+.frame-count{font-family:var(--sans);font-size:.625rem;font-weight:600;letter-spacing:.1em;color:var(--primary);font-variant-numeric:tabular-nums}
+.stage{aspect-ratio:1/.86;width:100%;background:
+  radial-gradient(ellipse 60% 55% at 50% 48%,color-mix(in srgb,var(--primary) 6%,transparent),transparent 70%);}
+
+/* step rail */
+.rail{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.rail-item{padding:.95rem 1rem 1.1rem;border-left:1px solid var(--line);position:relative}
+.rail-item:first-child{border-left:0}
+.rail-num{font-size:.625rem;font-weight:700;letter-spacing:.12em;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.rail-title{font-family:var(--sans);font-size:.875rem;font-weight:600;margin-top:.3rem;color:var(--ink-3);transition:color .25s ease}
+.rail-desc{font-size:.75rem;line-height:1.45;color:var(--ink-3);margin-top:.35rem;opacity:.72;transition:opacity .25s ease}
+.rail-track{position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--line)}
+.rail-fill{height:100%;width:0;background:var(--primary);transition:width .1s linear}
+.rail-item[data-active="true"] .rail-num{color:var(--primary)}
+.rail-item[data-active="true"] .rail-title{color:var(--ink)}
+.rail-item[data-active="true"] .rail-desc{opacity:1;color:var(--ink-2)}
+
+/* ── generic section ── */
+section{padding:clamp(3.5rem,7vw,5.5rem) 0}
+.sec-head{max-width:46ch}
+.sec-head h2{font-size:clamp(1.65rem,3.2vw,2.35rem);margin-top:1rem}
+.sec-head p{color:var(--ink-2);margin-top:.85rem}
+
+/* value grid — hairlines, no cards */
+.values{display:grid;grid-template-columns:repeat(4,1fr);margin-top:2.75rem;border-top:1px solid var(--line)}
+.value{padding:1.5rem 1.4rem 0 0;border-right:1px solid var(--line)}
+.value:last-child{border-right:0;padding-right:0}
+.value:not(:first-child){padding-left:1.4rem}
+.value svg{color:var(--primary);margin-bottom:.9rem}
+.value h3{font-family:var(--sans);font-size:.95rem;font-weight:600}
+.value p{font-size:.85rem;color:var(--ink-2);margin-top:.45rem}
+
+/* pipeline detail */
+.pipe{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:2.75rem;background:var(--line);border:1px solid var(--line)}
+.pipe > div{background:var(--surface);padding:1.6rem 1.5rem}
+.pipe .step-i{display:flex;align-items:center;gap:.7rem;color:var(--primary)}
+.pipe h3{font-family:var(--sans);font-size:1.02rem;font-weight:600;margin-top:1rem}
+.pipe p{font-size:.875rem;color:var(--ink-2);margin-top:.6rem}
+.pipe ul{margin:.9rem 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.pipe li{font-size:.8rem;color:var(--ink-3);display:flex;gap:.5rem;align-items:flex-start}
+.pipe li svg{flex:none;margin-top:.25rem;color:var(--signal)}
+
+/* pricing spec sheet */
+.price-wrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(2rem,5vw,4rem);align-items:start}
+.price-big{font-family:var(--serif);font-size:clamp(3.2rem,7vw,4.6rem);font-weight:600;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.price-big sup{font-size:.34em;vertical-align:.9em;margin-right:.1em;font-weight:500}
+.price-unit{font-size:.9rem;color:var(--ink-2);margin-top:.5rem}
+.sheet{border-top:1px solid var(--line-2)}
+.sheet-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--line);font-size:.9rem}
+.sheet-row dt{color:var(--ink-2)}
+.sheet-row dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+.note{font-size:.8rem;color:var(--ink-3);margin-top:1.1rem}
+
+/* faq */
+.faq{margin-top:2.5rem;border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line)}
+summary{
+  cursor:pointer;padding:1.1rem 0;font-weight:600;font-size:.95rem;
+  display:flex;align-items:center;gap:1rem;list-style:none;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'+';margin-left:auto;color:var(--primary);font-size:1.15rem;font-weight:400}
+details[open] summary::after{content:'–'}
+details p{padding:0 0 1.2rem;color:var(--ink-2);font-size:.9rem;max-width:68ch}
+
+/* closing band */
+.band{background:var(--primary-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.band-in{display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem;justify-content:space-between;padding:clamp(2.5rem,5vw,3.5rem) 0}
+.band h2{font-size:clamp(1.55rem,3vw,2.1rem);max-width:26ch}
+
+footer{padding:2.5rem 0 3rem;font-size:.8rem;color:var(--ink-3)}
+.foot-in{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center}
+.foot-in nav{display:flex;gap:1.4rem;margin-left:auto}
+.foot-in a{text-decoration:none}
+.foot-in a:hover{color:var(--primary)}
+
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:2.5rem}
+  .values{grid-template-columns:1fr 1fr}
+  .value:nth-child(2n){border-right:0}
+  .value{padding-right:1.4rem}
+  .pipe,.price-wrap{grid-template-columns:1fr}
+  nav.links{display:none}
+}
+@media (max-width:560px){
+  .values{grid-template-columns:1fr}
+  .value{border-right:0;padding-left:0;padding-right:0;border-top:1px solid var(--line)}
+  .value:first-child{border-top:0}
+  .rail{grid-template-columns:1fr}
+  .rail-item{border-left:0;border-top:1px solid var(--line)}
+  .rail-item:first-child{border-top:0}
+  .hbar .btn{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}
+</style>
+
+<header>
+  <div class="wrap hbar">
+    <a class="brand" href="#top">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="3.5" y="2.5" width="13" height="19" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M7 7h6M7 10.5h6M7 14h3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="17" cy="16" r="4.5" stroke="var(--primary)" stroke-width="1.5"/>
+        <path d="M17 13.8v4.4M14.8 16h4.4" stroke="var(--primary)" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      <span>Pergament</span>
+    </a>
+    <nav class="links">
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">Questions</a>
+    </nav>
+    <div class="locale">
+      <a href="#" aria-current="page">SL</a><a href="#">EN</a>
+    </div>
+    <a class="btn btn-p btn-sm" href="#start">Start a scan</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Print → EPUB 3</p>
+        <h1>Turn a printed backlist into <em>clean EPUB</em>.</h1>
+        <p class="lede">Photograph each page with a phone. We straighten, clean and read every shot, assemble the book, and email you the EPUB. No software, no account, no per-seat licence.</p>
+        <div class="cta-row">
+          <a class="btn btn-p" href="#start">Start a scan
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M12.5 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-g" href="#pricing">See the price list</a>
+        </div>
+        <p class="spec-line">
+          <span><b>€0.20</b> per page</span>
+          <span><b>20</b>-page minimum</span>
+          <span>VAT included</span>
+          <span>Slovene &amp; English</span>
+        </p>
+      </div>
+
+      <figure class="panel" style="margin:0">
+        <div class="panel-head">
+          <span class="kicker">Pipeline preview</span>
+          <span class="frame-count" id="phase-label">01 / CAPTURE</span>
+        </div>
+        <div class="stage" id="stage" role="img" aria-label="Animated loop: a book's pages turn, a page is scanned under a lens, and the finished EPUB is read on a phone."></div>
+        <div class="rail" id="rail">
+          <div class="rail-item" data-active="false">
+            <p class="rail-num">01</p>
+            <p class="rail-title">Scan the book</p>
+            <p class="rail-desc">One photo per page, guided by an on-screen frame.</p>
+            <div class="rail-track"><div class="rail-fill"></div></div>
+          </div>
+          <div class="rail-item" data-active="false">
+            <p class="rail-num">02</p>
+            <p class="rail-title">Wait while we process</p>
+            <p class="rail-desc">Deskew, de-shadow, OCR, assemble. Close the tab.</p>
+            <div class="rail-track"><div class="rail-fill"></div></div>
+          </div>
+          <div class="rail-item" data-active="false">
+            <p class="rail-num">03</p>
+            <p class="rail-title">Open your EPUB</p>
+            <p class="rail-desc">Reflowable EPUB 3 in your inbox, ready to read.</p>
+            <div class="rail-track"><div class="rail-fill"></div></div>
+          </div>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <section id="why">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Built for small presses</p>
+        <h2>Everything a rights team needs, nothing it has to install.</h2>
+        <p>Pergament exists for the titles that never got digitised: out-of-print stock, regional imprints, a single archive copy on the shelf.</p>
+      </div>
+      <div class="values">
+        <div class="value">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.2l1.1-1.8A1 1 0 0 1 9.7 3.7h4.6a1 1 0 0 1 .9.5L16.3 6h1.2A2.5 2.5 0 0 1 20 8.5v8A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-8Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="12.2" r="3.2" stroke="currentColor" stroke-width="1.5"/></svg>
+          <h3>The phone is the scanner</h3>
+          <p>No flatbed, no rig, no capture station. Any recent phone camera is enough.</p>
+        </div>
+        <div class="value">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="12" r="3.6" stroke="currentColor" stroke-width="1.5"/></svg>
+          <h3>Shot quality checked live</h3>
+          <p>Blur, motion, shadow and exposure are flagged in the viewfinder, before you move on.</p>
+        </div>
+        <div class="value">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 4h10a2 2 0 0 1 2 2v14l-7-3.2L5 20V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          <h3>Reflowable EPUB 3</h3>
+          <p>Text that resizes on any reader, with the cover you cropped as the title image.</p>
+        </div>
+        <div class="value">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7.5h16M4 7.5v10A1.5 1.5 0 0 0 5.5 19h13a1.5 1.5 0 0 0 1.5-1.5v-10M4 7.5 5.4 5.2A1.5 1.5 0 0 1 6.7 4.5h10.6a1.5 1.5 0 0 1 1.3.7L20 7.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9.6 11.5h4.8M9.6 14.5h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <h3>Business invoice on request</h3>
+          <p>Company name, VAT ID and address go on the Stripe receipt. Pay per page, per title.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">What happens to a page</p>
+        <h2>Three stages, and you only work during the first one.</h2>
+      </div>
+      <div class="pipe">
+        <div>
+          <div class="step-i">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 5.5h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span class="kicker">Stage 01</span>
+          </div>
+          <h3>Scan the book</h3>
+          <p>Open pergament.si on a phone — or scan the QR code from your desktop. Shoot the cover first, then one photo per page, in order.</p>
+          <ul>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>A fixed 1:√2 guide keeps every page the same shape</li>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Drag the cover's corners to square it up</li>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Reorder, retake or delete pages before you send</li>
+          </ul>
+        </div>
+        <div>
+          <div class="step-i">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4.5" y="4.5" width="15" height="15" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M9 2.5v2M15 2.5v2M9 19.5v2M15 19.5v2M2.5 9h2M2.5 15h2M19.5 9h2M19.5 15h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span class="kicker">Stage 02</span>
+          </div>
+          <h3>Wait while we process</h3>
+          <p>Uploads start as you shoot, so the queue is usually empty by the time you finish. Then the pipeline runs without you.</p>
+          <ul>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Perspective correction and page straightening</li>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Tesseract OCR into selectable, searchable text</li>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Reading order and chapters rebuilt into EPUB</li>
+          </ul>
+        </div>
+        <div>
+          <div class="step-i">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 6.8S10 5 6.8 5C5.2 5 4 5.4 4 5.4v12.2s1.2-.4 2.8-.4C10 17.2 12 19 12 19s2-1.8 5.2-1.8c1.6 0 2.8.4 2.8.4V5.4S18.8 5 17.2 5C14 5 12 6.8 12 6.8Zm0 0V19" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            <span class="kicker">Stage 03</span>
+          </div>
+          <h3>Open your EPUB</h3>
+          <p>Pay with Stripe, and the finished file is emailed to the address on the receipt. A download link stays live for seven days.</p>
+          <ul>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Sent as an attachment and a download link</li>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Opens in Apple Books, Calibre, Kobo, Thorium</li>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Nothing kept after the link expires</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="pricing">
+    <div class="wrap price-wrap">
+      <div>
+        <p class="eyebrow">Price list</p>
+        <p class="price-big"><sup>€</sup>0.20</p>
+        <p class="price-unit">per scanned page, VAT included</p>
+        <a class="btn btn-p" href="#start" style="margin-top:1.6rem">Start a scan</a>
+      </div>
+      <dl class="sheet">
+        <div class="sheet-row"><dt>Minimum charge</dt><dd>20 pages · €4.00</dd></div>
+        <div class="sheet-row"><dt>A 180-page paperback</dt><dd>€36.00</dd></div>
+        <div class="sheet-row"><dt>Cover capture &amp; cropping</dt><dd>Included</dd></div>
+        <div class="sheet-row"><dt>OCR and EPUB assembly</dt><dd>Included</dd></div>
+        <div class="sheet-row"><dt>Email delivery</dt><dd>Included</dd></div>
+        <div class="sheet-row"><dt>Download window</dt><dd>7 days</dd></div>
+        <div class="sheet-row"><dt>Account required</dt><dd>No</dd></div>
+        <div class="sheet-row"><dt>Payment</dt><dd>Stripe · card</dd></div>
+        <p class="note">Charged once, after your pages are uploaded and counted — never before. Business customers can add a company name, VAT ID and address to the receipt at checkout.</p>
+      </dl>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Questions</p>
+        <h2>The things publishers ask first.</h2>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>Why does scanning happen on a phone and not my desktop?</summary>
+          <p>The capture step needs a camera you can hold over a page, plus a live guide that tells you when a shot is too dark, too bright, blurred or shadowed. A phone has both. On desktop you get a QR code that hands the session over to your phone; everything after capture — payment, receipt, delivery — is fine on either.</p>
+        </details>
+        <details>
+          <summary>How good is the text recognition?</summary>
+          <p>Clean, well-lit body text in Slovene or English comes through reliably. Heavily set display type, tables, footnotes and marginalia are where OCR gets rough — so review anything typographically unusual before you publish it. The original page images stay in the file, so nothing is lost.</p>
+        </details>
+        <details>
+          <summary>Do I need to remove page numbers and running heads?</summary>
+          <p>Keep them outside the guide frame when you shoot. The guide is sized so that framing the text block alone is the natural thing to do, which keeps headers and folios out of the recognised text.</p>
+        </details>
+        <details>
+          <summary>Who is responsible for the rights?</summary>
+          <p>You are. Pergament is a conversion tool, not a licence — only scan books you hold the rights to, or that are in the public domain.</p>
+        </details>
+        <details>
+          <summary>What happens to my images?</summary>
+          <p>They're processed, turned into your EPUB, and deleted when the seven-day download window closes. There are no accounts, so there is no library of past scans to leak.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <div class="band" id="start">
+    <div class="wrap band-in">
+      <div>
+        <p class="eyebrow">Start now</p>
+        <h2 style="margin-top:.8rem">Pick a book off the shelf. You'll have the EPUB today.</h2>
+      </div>
+      <div class="cta-row" style="margin:0">
+        <a class="btn btn-p" href="#">Start a scan</a>
+        <a class="btn btn-g" href="#">Email us about a backlist</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>© 2026 Pergament · pergament.si</span>
+    <nav>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">Questions</a>
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="anim.js"></script>
+<script>
+(function(){
+  var items = Array.prototype.slice.call(document.querySelectorAll('#rail .rail-item'));
+  var fills = items.map(function(i){ return i.querySelector('.rail-fill'); });
+  var label = document.getElementById('phase-label');
+  var names = ['01 / CAPTURE','02 / PROCESS','03 / DELIVER'];
+
+  PergamentHero.mount({
+    el: document.getElementById('stage'),
+    onFrame: function(phase, progress, changed){
+      for (var i=0;i<items.length;i++){
+        var active = i === phase;
+        if (items[i].dataset.active !== String(active)) items[i].dataset.active = String(active);
+        fills[i].style.width = (i < phase ? 100 : active ? progress*100 : 0) + '%';
+      }
+      if (changed) label.textContent = names[phase];
+    },
+    onReduced: function(){
+      items.forEach(function(it,i){ it.dataset.active = 'true'; fills[i].style.width = '100%'; });
+      label.textContent = 'ALL THREE STAGES';
+    }
+  });
+})();
+</script>

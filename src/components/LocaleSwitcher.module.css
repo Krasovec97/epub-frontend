@@ -1,40 +1,32 @@
+/* Segmented pair; the current locale is the filled segment. */
 .switcher {
   display: flex;
-  align-items: center;
-  gap: 0.1rem;
-}
-
-.item {
-  display: flex;
-  align-items: center;
-}
-
-.sep {
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  color: var(--paper-faint);
-  margin: 0 0.35rem;
-  user-select: none;
+  border: 1px solid var(--line-2);
+  border-radius: 3px;
+  overflow: hidden;
+  flex: none;
 }
 
 .btn {
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  color: var(--paper-mid);
-  padding: 0.3rem 0.45rem;
-  transition: color 0.18s;
-  text-transform: uppercase;
+  padding: 0.28rem 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  transition: color 0.18s ease, background 0.18s ease;
 }
 
 .btn:hover:not(:disabled) {
-  color: var(--paper);
+  color: var(--primary);
+  background: var(--primary-soft);
 }
 
 .btn:disabled {
   cursor: default;
 }
 
-.active {
-  color: var(--gold);
+.active,
+.active:disabled {
+  background: var(--ink);
+  color: var(--ground);
 }

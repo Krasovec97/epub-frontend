@@ -1,45 +1,163 @@
 {
   "HomePage": {
     "title": "Pergament",
-    "subtitle": "Pozdravljeni — Bootstrap in lokalizacija delujeta.",
-    "hero": {
-      "title": "Skenirajte knjigo v čist EPUB",
-      "subtitle": "Odprite to stran na telefonu, fotografirajte vsako stran znotraj okvirja in poslali vam bomo dokončan EPUB po e-pošti.",
-      "cta": "Začni skenirati"
+    "nav": {
+      "label": "Glavni meni",
+      "how": "Kako deluje",
+      "pricing": "Cenik",
+      "faq": "Vprašanja",
+      "start": "Začni skeniranje"
     },
-    "howItWorks": {
-      "heading": "Kako deluje",
+    "hero": {
+      "eyebrow": "Tisk → EPUB 3",
+      "title": "Iz tiskane zaloge v <em>čist EPUB</em>.",
+      "subtitle": "Vsako stran fotografirajte s telefonom. Posnetke poravnamo, počistimo in preberemo, sestavimo knjigo in vam EPUB pošljemo po e-pošti. Brez programske opreme, brez računa, brez licenc na uporabnika.",
+      "cta": "Začni skeniranje",
+      "ctaSecondary": "Poglej cenik",
+      "perPage": "stran",
+      "minimum": "najmanj {pages} strani",
+      "vat": "z DDV",
+      "languages": "slovensko in angleško"
+    },
+    "panel": {
+      "label": "Predogled postopka",
+      "alt": "Ponavljajoča se animacija: strani knjige se obračajo, stran se skenira pod lečo, dokončan EPUB se bere na telefonu.",
+      "allPhases": "Vse tri faze",
+      "phase1": "01 / Zajem",
+      "phase2": "02 / Obdelava",
+      "phase3": "03 / Dostava"
+    },
+    "steps": {
       "step1": {
-        "title": "Odpri na telefonu",
-        "desc": "Skenirajte QR kodo ali odprite to stran na telefonu, da uporabite kamero."
+        "title": "Skenirajte knjigo",
+        "desc": "Ena fotografija na stran, vodilo je na zaslonu."
       },
       "step2": {
-        "title": "Poslikaj strani",
-        "desc": "Vsako stran postavite znotraj okvirja; izpustite številke strani in robove."
+        "title": "Počakajte na obdelavo",
+        "desc": "Poravnava, odstranjevanje senc, OCR, sestavljanje. Zavihek lahko zaprete."
       },
       "step3": {
-        "title": "Plačaj in prejmi",
-        "desc": "Varno plačajte prek Stripe in prejmite dokončan EPUB v svoj nabiralnik."
+        "title": "Odprite svoj EPUB",
+        "desc": "Prilagodljiv EPUB 3 v vaši e-pošti, pripravljen za branje."
+      }
+    },
+    "why": {
+      "eyebrow": "Za manjše založbe",
+      "heading": "Vse, kar potrebuje uredništvo, in nič, kar bi moralo namestiti.",
+      "body": "Pergament je namenjen naslovom, ki nikoli niso bili digitalizirani: razprodanim izdajam, regionalnim zbirkam, edinemu arhivskemu izvodu na polici.",
+      "v1": {
+        "title": "Telefon je skener",
+        "desc": "Brez ploskovnega skenerja, brez stojala, brez zajemne postaje. Dovolj je sodobna telefonska kamera."
+      },
+      "v2": {
+        "title": "Kakovost posnetka preverjena v živo",
+        "desc": "Zamegljenost, premikanje, senco in osvetlitev opozorimo že v iskalu, preden greste naprej."
+      },
+      "v3": {
+        "title": "Prilagodljiv EPUB 3",
+        "desc": "Besedilo, ki se prilagodi vsaki bralni napravi, z naslovnico, ki ste jo obrezali sami."
+      },
+      "v4": {
+        "title": "Račun za podjetja",
+        "desc": "Naziv podjetja, davčna številka in naslov gredo na Stripe račun. Plačate na stran, na naslov."
+      }
+    },
+    "howItWorks": {
+      "eyebrow": "Kaj se zgodi s stranjo",
+      "heading": "Tri faze, delo pa imate le v prvi.",
+      "step1": {
+        "stage": "Faza 01",
+        "title": "Skenirajte knjigo",
+        "desc": "Pergament odprite na telefonu ali z računalnika poskenirajte QR kodo. Najprej posnemite naslovnico, nato po vrsti eno fotografijo na stran.",
+        "b1": "Vodilo v razmerju 1:√2 ohrani enako obliko vseh strani",
+        "b2": "Vogale naslovnice povlecite, da jo poravnate",
+        "b3": "Pred pošiljanjem lahko strani prerazvrstite, ponovite ali izbrišete"
+      },
+      "step2": {
+        "stage": "Faza 02",
+        "title": "Počakajte na obdelavo",
+        "desc": "Nalaganje se začne že med snemanjem, zato je vrsta ob koncu običajno prazna. Nato postopek teče brez vas.",
+        "b1": "Popravek perspektive in poravnava strani",
+        "b2": "OCR s Tesseractom v izbirno besedilo, po katerem se da iskati",
+        "b3": "Vrstni red branja in poglavja sestavljena v EPUB"
+      },
+      "step3": {
+        "stage": "Faza 03",
+        "title": "Odprite svoj EPUB",
+        "desc": "Plačate s Stripe, dokončano datoteko pa pošljemo na e-naslov z računa. Povezava za prenos ostane na voljo sedem dni.",
+        "b1": "Poslano kot priponka in kot povezava za prenos",
+        "b2": "Odpre se v Apple Books, Calibre, Kobo in Thorium",
+        "b3": "Po izteku povezave ne hranimo ničesar"
       }
     },
     "start": {
-      "heading": "Pripravljen na skeniranje",
-      "mobileCta": "Začni skenirati"
+      "eyebrow": "Začnite zdaj",
+      "heading": "Pripravljeni, ko ste vi.",
+      "mobileCta": "Začni skeniranje"
     },
     "pricing": {
-      "heading": "Preprosta cena",
-      "price": "{price} EUR",
-      "perPage": "na stran",
-      "vatNote": "z vključenim DDV",
-      "minimumNote": "Najmanjši strošek: {pages} strani ({total} EUR)",
-      "paymentNote": "Uporabniški račun ni potreben."
+      "eyebrow": "Cenik",
+      "unit": "za skenirano stran, z DDV",
+      "cta": "Začni skeniranje",
+      "included": "Vključeno",
+      "rowMinimum": "Najmanjši znesek",
+      "rowMinimumValue": "{pages} strani · {total} €",
+      "rowExample": "Žepnica s {pages} stranmi",
+      "rowCover": "Zajem in obrez naslovnice",
+      "rowOcr": "OCR in sestavljanje EPUB",
+      "rowDelivery": "Dostava po e-pošti",
+      "rowWindow": "Rok za prenos",
+      "rowWindowValue": "7 dni",
+      "rowAccount": "Potreben račun",
+      "rowAccountValue": "Ne",
+      "rowPayment": "Plačilo",
+      "rowPaymentValue": "Stripe · kartica",
+      "note": "Zaračunamo enkrat, po tem ko so strani naložene in preštete — nikoli prej. Podjetja lahko ob plačilu na račun dodajo naziv, davčno številko in naslov."
+    },
+    "faq": {
+      "eyebrow": "Vprašanja",
+      "heading": "Kar založnike zanima najprej.",
+      "q1": {
+        "q": "Zakaj skeniranje poteka na telefonu in ne na računalniku?",
+        "a": "Za zajem potrebujete kamero, ki jo držite nad stranjo, in vodilo, ki vam med snemanjem pove, da je posnetek pretemen, presvetel, zamegljen ali v senci. Telefon ima oboje. Na računalniku dobite QR kodo, ki sejo prenese na telefon; vse po zajemu — plačilo, račun, dostava — deluje na obeh."
+      },
+      "q2": {
+        "q": "Kako dobro deluje prepoznavanje besedila?",
+        "a": "Čisto, dobro osvetljeno tekoče besedilo v slovenščini ali angleščini prepozna zanesljivo. Težje je pri okrasnih pisavah, tabelah, opombah in zapiskih na robu, zato pred objavo preverite vse tipografsko nenavadno. Izvirne slike strani ostanejo v datoteki, tako da nič ni izgubljeno."
+      },
+      "q3": {
+        "q": "Ali moram odstraniti številke strani in glave?",
+        "a": "Med snemanjem jih pustite zunaj okvirja vodila. Vodilo je odmerjeno tako, da je naravno uokviriti le besedilni blok, s tem pa glave in številke strani ostanejo izven prepoznanega besedila."
+      },
+      "q4": {
+        "q": "Lahko na pol prekinem in se vrnem pozneje?",
+        "a": "Da. Seja ostane na telefonu, s katerim ste začeli, zato vas bomo ob vrnitvi vprašali, ali želite nadaljevati tam, kjer ste ostali."
+      },
+      "q5": {
+        "q": "Kdo odgovarja za avtorske pravice?",
+        "a": "Vi. Pergament je orodje za pretvorbo, ne licenca — skenirajte le knjige, za katere imate pravice, ali tiste v javni domeni."
+      }
+    },
+    "closing": {
+      "eyebrow": "Začnite zdaj",
+      "heading": "Vzemite knjigo s police. EPUB boste imeli še danes.",
+      "cta": "Začni skeniranje",
+      "ctaSecondary": "Najprej preberi vprašanja"
+    },
+    "footer": {
+      "label": "Noga",
+      "rights": "© 2026 Pergament · pergament.si",
+      "pricing": "Cenik",
+      "faq": "Vprašanja"
     }
   },
   "ScanPage": {
     "desktop": {
-      "heading": "Nadaljujte na telefonu",
-      "body": "Skener potrebuje kamero telefona. Skenirajte spodnjo QR kodo ali odprite ta naslov na mobilni napravi.",
-      "urlLabel": "Ali obiščite:"
+      "heading": "Skener potrebuje kamero telefona.",
+      "body": "S telefonom poskenirajte QR kodo ali na njem odprite spodnji naslov. Seja, plačilo in dostava se prenesejo naprej.",
+      "urlLabel": "Ali odprite ta naslov:",
+      "eyebrow": "Nadaljujte na telefonu",
+      "qrAlt": "QR koda s povezavo do skenerja Pergament"
     },
     "intro": {
       "heading": "Preden začnete",
