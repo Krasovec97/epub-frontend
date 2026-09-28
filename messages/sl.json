@@ -6,22 +6,22 @@
       "how": "Kako deluje",
       "pricing": "Cenik",
       "faq": "Vprašanja",
-      "start": "Začni skeniranje"
+      "start": "Začnite skeniranje"
     },
     "hero": {
       "eyebrow": "Tisk → EPUB 3",
-      "title": "Iz tiskane zaloge v <em>čist EPUB</em>.",
-      "subtitle": "Vsako stran fotografirajte s telefonom. Posnetke poravnamo, počistimo in preberemo, sestavimo knjigo in vam EPUB pošljemo po e-pošti. Brez programske opreme, brez računa, brez licenc na uporabnika.",
-      "cta": "Začni skeniranje",
-      "ctaSecondary": "Poglej cenik",
+      "title": "Iz tiskane knjige v <em>čist EPUB</em>.",
+      "subtitle": "Vsako stran fotografirajte s telefonom. Posnetke poravnamo, počistimo in iz njih razberemo besedilo, sestavimo knjigo in vam EPUB pošljemo po e-pošti. Brez programske opreme, brez registracije, brez licenčnin na uporabnika.",
+      "cta": "Začnite skeniranje",
+      "ctaSecondary": "Poglejte cenik",
       "perPage": "stran",
-      "minimum": "najmanj {pages} strani",
+      "minimum": "najmanj {pages, plural, one {# stran} other {# strani}}",
       "vat": "z DDV",
-      "languages": "slovensko in angleško"
+      "languages": "slovenščina in angleščina"
     },
     "panel": {
       "label": "Predogled postopka",
-      "alt": "Ponavljajoča se animacija: strani knjige se obračajo, stran se skenira pod lečo, dokončan EPUB se bere na telefonu.",
+      "alt": "Ponavljajoča se animacija: strani knjige se obračajo, stran skeniramo pod lečo, končani EPUB pa beremo na telefonu.",
       "allPhases": "Vse tri faze",
       "phase1": "01 / Zajem",
       "phase2": "02 / Obdelava",
@@ -30,7 +30,7 @@
     "steps": {
       "step1": {
         "title": "Skenirajte knjigo",
-        "desc": "Ena fotografija na stran, vodilo je na zaslonu."
+        "desc": "Ena fotografija na stran, po vodilu na zaslonu."
       },
       "step2": {
         "title": "Počakajte na obdelavo",
@@ -43,15 +43,15 @@
     },
     "why": {
       "eyebrow": "Za manjše založbe",
-      "heading": "Vse, kar potrebuje uredništvo, in nič, kar bi moralo namestiti.",
-      "body": "Pergament je namenjen naslovom, ki nikoli niso bili digitalizirani: razprodanim izdajam, regionalnim zbirkam, edinemu arhivskemu izvodu na polici.",
+      "heading": "Vse, kar potrebuje uredništvo, in nič, kar bi bilo treba namestiti.",
+      "body": "Pergament je namenjen naslovom, ki nikoli niso bili digitalizirani: razprodanim izdajam, knjigam manjših regionalnih založb, edinemu arhivskemu izvodu na polici.",
       "v1": {
         "title": "Telefon je skener",
         "desc": "Brez ploskovnega skenerja, brez stojala, brez zajemne postaje. Dovolj je sodobna telefonska kamera."
       },
       "v2": {
-        "title": "Kakovost posnetka preverjena v živo",
-        "desc": "Zamegljenost, premikanje, senco in osvetlitev opozorimo že v iskalu, preden greste naprej."
+        "title": "Kakovost posnetka preverimo takoj",
+        "desc": "Na zamegljenost, premikanje, senco in slabo osvetlitev opozorimo že v iskalu, preden greste naprej."
       },
       "v3": {
         "title": "Prilagodljiv EPUB 3",
@@ -59,7 +59,7 @@
       },
       "v4": {
         "title": "Račun za podjetja",
-        "desc": "Naziv podjetja, davčna številka in naslov gredo na Stripe račun. Plačate na stran, na naslov."
+        "desc": "Naziv podjetja, davčna številka in naslov se zapišejo na račun. Plačate po strani, za vsako knjigo posebej."
       }
     },
     "howItWorks": {
@@ -68,40 +68,40 @@
       "step1": {
         "stage": "Faza 01",
         "title": "Skenirajte knjigo",
-        "desc": "Pergament odprite na telefonu ali z računalnika poskenirajte QR kodo. Najprej posnemite naslovnico, nato po vrsti eno fotografijo na stran.",
-        "b1": "Vodilo v razmerju 1:√2 ohrani enako obliko vseh strani",
+        "desc": "Pergament odprite na telefonu ali s telefonom skenirajte QR kodo na zaslonu računalnika. Najprej posnemite naslovnico, nato po vrsti fotografirajte stran za stranjo.",
+        "b1": "Vodilo v razmerju 1:√2 poskrbi, da imajo vse strani enako obliko",
         "b2": "Vogale naslovnice povlecite, da jo poravnate",
-        "b3": "Pred pošiljanjem lahko strani prerazvrstite, ponovite ali izbrišete"
+        "b3": "Pred pošiljanjem lahko strani prerazvrstite, znova posnamete ali izbrišete"
       },
       "step2": {
         "stage": "Faza 02",
         "title": "Počakajte na obdelavo",
-        "desc": "Nalaganje se začne že med snemanjem, zato je vrsta ob koncu običajno prazna. Nato postopek teče brez vas.",
+        "desc": "Nalaganje se začne že med snemanjem, zato je čakalna vrsta ob koncu običajno prazna. Nato postopek teče brez vas.",
         "b1": "Popravek perspektive in poravnava strani",
-        "b2": "OCR s Tesseractom v izbirno besedilo, po katerem se da iskati",
-        "b3": "Vrstni red branja in poglavja sestavljena v EPUB"
+        "b2": "Tesseract OCR sliko pretvori v besedilo, ki ga je mogoče označiti in iskati po njem",
+        "b3": "Vrstni red branja in poglavja znova sestavimo v EPUB"
       },
       "step3": {
         "stage": "Faza 03",
         "title": "Odprite svoj EPUB",
-        "desc": "Plačate s Stripe, dokončano datoteko pa pošljemo na e-naslov z računa. Povezava za prenos ostane na voljo sedem dni.",
-        "b1": "Poslano kot priponka in kot povezava za prenos",
+        "desc": "Plačate prek Stripa, dokončano datoteko pa pošljemo na e-naslov, ki ste ga navedli ob plačilu. Povezava za prenos ostane na voljo sedem dni.",
+        "b1": "Pošljemo kot priponko in kot povezavo za prenos",
         "b2": "Odpre se v Apple Books, Calibre, Kobo in Thorium",
         "b3": "Po izteku povezave ne hranimo ničesar"
       }
     },
     "start": {
       "eyebrow": "Začnite zdaj",
-      "heading": "Pripravljeni, ko ste vi.",
-      "mobileCta": "Začni skeniranje"
+      "heading": "Ko ste pripravljeni, začnemo.",
+      "mobileCta": "Začnite skeniranje"
     },
     "pricing": {
       "eyebrow": "Cenik",
       "unit": "za skenirano stran, z DDV",
-      "cta": "Začni skeniranje",
+      "cta": "Začnite skeniranje",
       "included": "Vključeno",
       "rowMinimum": "Najmanjši znesek",
-      "rowMinimumValue": "{pages} strani · {total} €",
+      "rowMinimumValue": "{pages, plural, one {# stran} other {# strani}} · {total} €",
       "rowExample": "Žepnica s {pages} stranmi",
       "rowCover": "Zajem in obrez naslovnice",
       "rowOcr": "OCR in sestavljanje EPUB",
@@ -112,26 +112,26 @@
       "rowAccountValue": "Ne",
       "rowPayment": "Plačilo",
       "rowPaymentValue": "Stripe · kartica",
-      "note": "Zaračunamo enkrat, po tem ko so strani naložene in preštete — nikoli prej. Podjetja lahko ob plačilu na račun dodajo naziv, davčno številko in naslov."
+      "note": "Zaračunamo enkrat, šele ko so strani naložene in preštete — nikoli prej. Podjetja lahko ob plačilu na račun dodajo naziv podjetja, davčno številko in naslov."
     },
     "faq": {
       "eyebrow": "Vprašanja",
-      "heading": "Kar založnike zanima najprej.",
+      "heading": "Vprašanja, ki jih založniki postavijo najprej.",
       "q1": {
         "q": "Zakaj skeniranje poteka na telefonu in ne na računalniku?",
-        "a": "Za zajem potrebujete kamero, ki jo držite nad stranjo, in vodilo, ki vam med snemanjem pove, da je posnetek pretemen, presvetel, zamegljen ali v senci. Telefon ima oboje. Na računalniku dobite QR kodo, ki sejo prenese na telefon; vse po zajemu — plačilo, račun, dostava — deluje na obeh."
+        "a": "Za zajem potrebujete kamero, ki jo držite nad stranjo, in vodilo, ki vam med snemanjem pove, da je posnetek pretemen, presvetel, zamegljen ali v senci. Telefon ima oboje. Na računalniku dobite QR kodo, ki vašo sejo prenese na telefon; vse po zajemu — plačilo, račun, dostava — deluje na obeh napravah."
       },
       "q2": {
         "q": "Kako dobro deluje prepoznavanje besedila?",
-        "a": "Čisto, dobro osvetljeno tekoče besedilo v slovenščini ali angleščini prepozna zanesljivo. Težje je pri okrasnih pisavah, tabelah, opombah in zapiskih na robu, zato pred objavo preverite vse tipografsko nenavadno. Izvirne slike strani ostanejo v datoteki, tako da nič ni izgubljeno."
+        "a": "Čisto, dobro osvetljeno tekoče besedilo v slovenščini ali angleščini prepoznamo zanesljivo. Težje je pri okrasnih pisavah, tabelah, opombah in zapiskih na robu, zato pred objavo preverite vse tipografsko nenavadno. Izvirne slike strani ostanejo v datoteki, tako da nič ni izgubljeno."
       },
       "q3": {
         "q": "Ali moram odstraniti številke strani in glave?",
-        "a": "Med snemanjem jih pustite zunaj okvirja vodila. Vodilo je odmerjeno tako, da je naravno uokviriti le besedilni blok, s tem pa glave in številke strani ostanejo izven prepoznanega besedila."
+        "a": "Med snemanjem jih pustite zunaj okvirja vodila. Vodilo je odmerjeno tako, da je najlažje uokviriti samo besedilni blok — glave in številke strani tako same ostanejo zunaj prepoznanega besedila."
       },
       "q4": {
-        "q": "Lahko na pol prekinem in se vrnem pozneje?",
-        "a": "Da. Seja ostane na telefonu, s katerim ste začeli, zato vas bomo ob vrnitvi vprašali, ali želite nadaljevati tam, kjer ste ostali."
+        "q": "Ali lahko skeniranje vmes prekinem in nadaljujem pozneje?",
+        "a": "Da. Seja ostane na telefonu, s katerim ste začeli, zato vas bomo ob vrnitvi vprašali, ali želite nadaljevati tam, kjer ste končali."
       },
       "q5": {
         "q": "Kdo odgovarja za avtorske pravice?",
@@ -141,8 +141,8 @@
     "closing": {
       "eyebrow": "Začnite zdaj",
       "heading": "Vzemite knjigo s police. EPUB boste imeli še danes.",
-      "cta": "Začni skeniranje",
-      "ctaSecondary": "Najprej preberi vprašanja"
+      "cta": "Začnite skeniranje",
+      "ctaSecondary": "Najprej preberite vprašanja"
     },
     "footer": {
       "label": "Noga",
@@ -154,7 +154,7 @@
   "ScanPage": {
     "desktop": {
       "heading": "Skener potrebuje kamero telefona.",
-      "body": "S telefonom poskenirajte QR kodo ali na njem odprite spodnji naslov. Seja, plačilo in dostava se prenesejo naprej.",
+      "body": "S telefonom skenirajte QR kodo ali na njem odprite spodnji naslov. Seja, plačilo in dostava se prenesejo naprej.",
       "urlLabel": "Ali odprite ta naslov:",
       "eyebrow": "Nadaljujte na telefonu",
       "qrAlt": "QR koda s povezavo do skenerja Pergament"
@@ -169,8 +169,8 @@
     },
     "loading": "Nalaganje…",
     "resume": {
-      "heading": "Nadaljujete zadnjo sejo?",
-      "body": "Imate aktivno sejo z {count} zajetimi slikami.",
+      "heading": "Želite nadaljevati zadnjo sejo?",
+      "body": "V aktivni seji imate {count, plural, one {# zajeto stran} two {# zajeti strani} few {# zajete strani} other {# zajetih strani}}.",
       "continue": "Nadaljuj zadnjo sejo",
       "drop": "Zavrzi in začni znova"
     },
@@ -178,7 +178,7 @@
       "shutter": "Zajemi",
       "done": "Končano",
       "back": "Nazaj",
-      "counter": "{count} zajetih",
+      "counter": "{count, plural, one {# zajeta stran} two {# zajeti strani} few {# zajete strani} other {# zajetih strani}}",
       "permissionDenied": "Dovoljenje za kamero zavrnjeno. Omogočite ga v nastavitvah brskalnika in osvežite stran.",
       "noCamera": "Na tej napravi ni kamere.",
       "insecureContext": "Kamera je na voljo samo prek HTTPS (ali na localhost). Stran odprite prek varnega naslova in poskusite znova.",
@@ -186,7 +186,7 @@
         "cover": "Naslovnica",
         "page": "Stran {number}",
         "coverHint": "Začnite z naslovnico knjige. Postavite jo znotraj okvirja.",
-        "pageHint": "Naslednjo stran oz. njeno vsebino poravnajte znotraj okvirja."
+        "pageHint": "Naslednjo stran poravnajte znotraj okvirja."
       },
       "status": {
         "good": "Pripravljeno",
@@ -201,7 +201,7 @@
     },
     "review": {
       "heading": "Pregled strani",
-      "count": "{count} strani",
+      "count": "{count, plural, one {# stran} other {# strani}}",
       "retake": "Ponovi",
       "delete": "Izbriši",
       "addAnother": "Dodaj stran",
@@ -209,19 +209,19 @@
       "uploading": "Nalaganje…",
       "uploadError": "Nalaganje ni uspelo. Poskusite znova.",
       "waitUploads": "Nekatere strani se še nalagajo — počakajte trenutek.",
-      "retryFailed": "Ponovi {count} neuspelih nalaganj",
-      "moveUp": "Premakni naprej",
-      "moveDown": "Premakni nazaj",
+      "retryFailed": "{count, plural, one {Ponovi # neuspelo nalaganje} two {Ponovi # neuspeli nalaganji} few {Ponovi # neuspela nalaganja} other {Ponovi # neuspelih nalaganj}}",
+      "moveUp": "Premakni prej",
+      "moveDown": "Premakni pozneje",
       "status": {
         "uploading": "Pošiljanje",
         "queued": "V vrsti",
         "failed": "Neuspešno"
       },
       "empty": "Še nobena stran ni zajeta.",
-      "coverBadge": "Platnica",
+      "coverBadge": "Naslovnica",
       "qualityFlag": "Nizka kakovost",
       "qualityIssue": {
-        "dark": "Temno",
+        "dark": "Pretemno",
         "bright": "Presvetlo",
         "blurry": "Zamegljeno",
         "moving": "Premik",
@@ -230,15 +230,15 @@
     },
     "coverAdjust": {
       "title": "Prilagodi naslovnico",
-      "hint": "Povlecite oglišča do robov naslovnice.",
+      "hint": "Povlecite vogale do robov naslovnice.",
       "detecting": "Iščem naslovnico…",
-      "cannotDetect": "Naslovnice ni bilo mogoče zaznati samodejno – povlecite oglišča ročno.",
+      "cannotDetect": "Naslovnice ni bilo mogoče zaznati samodejno — povlecite vogale ročno.",
       "confirm": "Potrdi",
-      "retake": "Ponovno",
+      "retake": "Posnemi znova",
       "step": "Korak {current} od {total}",
       "cropTitle": "Postavite naslovnico",
-      "cropHint": "Povlecite oglišča do robov. Po potrebi obrnite ali znova zaznajte.",
-      "enhanceTitle": "Uglasite videz",
+      "cropHint": "Povlecite vogale do robov. Po potrebi obrnite ali znova zaznajte.",
+      "enhanceTitle": "Prilagodite videz",
       "enhanceHint": "Prilagodite ton, nato pridržite za primerjavo.",
       "next": "Naprej",
       "back": "Nazaj",
@@ -248,7 +248,7 @@
       "brightness": "Svetlost",
       "contrast": "Kontrast",
       "saturation": "Nasičenost",
-      "warmth": "Toplota",
+      "warmth": "Toplina",
       "auto": "Samodejno",
       "reset": "Ponastavi",
       "beforeAfter": "Pridržite za primerjavo"
@@ -259,16 +259,16 @@
     "step": "{current} / {total}",
     "summary": {
       "heading": "Vaš posnetek",
-      "pages": "{count} strani",
-      "price": "{amount} EUR",
-      "minimumNote": "Uporabljen minimum 20 strani",
+      "pages": "{count, plural, one {# stran} other {# strani}}",
+      "price": "{amount} €",
+      "minimumNote": "Upoštevan najmanjši obseg {pages} strani",
       "continue": "Naprej"
     },
     "billing": {
       "heading": "Plačilo",
       "emailLabel": "E-poštni naslov",
       "emailPlaceholder": "vas@primer.com",
-      "pay": "Plačaj s Stripe",
+      "pay": "Plačaj prek Stripa",
       "paying": "Preusmerjanje…",
       "back": "Nazaj",
       "error": "Prišlo je do napake. Poskusite znova.",
@@ -293,7 +293,7 @@
       "processingHeading": "Pretvarjamo vašo knjigo",
       "processingBody": "Vaše slike pretvarjamo v EPUB. Stran lahko zaprete, po pretvorbi boste prejeli e-poštno sporočilo z datoteko EPUB.",
       "processingAria": "Obdelava v teku",
-      "elapsed": "pretečenih {seconds} s",
+      "elapsed": "čas: {seconds} s",
       "readyHeading": "Vaš EPUB je pripravljen",
       "download": "Prenesi EPUB",
       "pagesLabel": "Strani",
@@ -305,7 +305,7 @@
       "failedHeading": "Obdelava ni uspela",
       "failedBody": "Pri pretvarjanju vaše knjige je prišlo do napake. Obrnite se na podporo in navedite ID seje.",
       "expiredHeading": "Ta seja je potekla",
-      "expiredBody": "Povezave za prenos so na voljo 7 dni po nakupu. Preverite svoj e-poštni nabiralnik za kopijo, ki smo vam jo poslali."
+      "expiredBody": "Povezave za prenos so na voljo 7 dni po nakupu. V e-poštnem nabiralniku poiščite kopijo, ki smo vam jo poslali."
     },
     "notFound": "Seja ni najdena."
   }
