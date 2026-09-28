@@ -176,7 +176,7 @@
     },
     "camera": {
       "shutter": "Zajemite",
-      "done": "Končajte",
+      "done": "Končano",
       "back": "Nazaj",
       "counter": "{count, plural, one {# zajeta stran} two {# zajeti strani} few {# zajete strani} other {# zajetih strani}}",
       "permissionDenied": "Dovoljenje za kamero zavrnjeno. Omogočite ga v nastavitvah brskalnika in osvežite stran.",
