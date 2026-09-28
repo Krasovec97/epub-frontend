@@ -4,6 +4,13 @@
   background: #000;
   z-index: 100;
   overflow: hidden;
+  /* This screen stays dark on purpose. Rebind the shared tokens locally so the
+     light global palette doesn't leave near-black ink on a black viewfinder. */
+  --ink: var(--dark-ink);
+  --ink-2: rgba(238, 243, 251, 0.72);
+  --primary: var(--dark-primary);
+  --line-2: var(--dark-line);
+  --ground: var(--dark-ground);
 }
 
 .video {
@@ -28,7 +35,7 @@
   transform: translate(-50%, -50%);
   height: min(72vh, calc(88vw * 1.4142));
   width: min(88vw, calc(72vh / 1.4142));
-  border: 2px solid rgba(243, 234, 214, 0.95);
+  border: 2px solid rgba(238, 243, 251, 0.95);
   box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.55);
   pointer-events: none;
   transition: border-color 180ms ease;
@@ -83,30 +90,30 @@
 }
 
 .stepBanner[data-kind="cover"] {
-  background: var(--gold);
+  background: var(--primary);
 }
 
 .stepLabel {
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 0.78rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(243, 234, 214, 0.98);
+  color: rgba(238, 243, 251, 0.98);
 }
 
 .stepBanner[data-kind="cover"] .stepLabel {
-  color: var(--bg);
+  color: var(--ground);
 }
 
 .stepHint {
   font-family: var(--serif);
   font-size: 0.72rem;
   line-height: 1.3;
-  color: rgba(243, 234, 214, 0.8);
+  color: rgba(238, 243, 251, 0.8);
 }
 
 .stepBanner[data-kind="cover"] .stepHint {
-  color: rgba(11, 11, 11, 0.78);
+  color: rgba(6, 12, 22, 0.82);
 }
 
 .statusHint {
@@ -114,14 +121,14 @@
   left: 50%;
   top: calc(50% - 3rem + min(72vh, calc(88vw * 1.4142)) / 2 + 0.75rem);
   transform: translateX(-50%);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 0.62rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   padding: 0.3rem 0.7rem;
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.55);
-  color: rgba(243, 234, 214, 0.95);
+  color: rgba(238, 243, 251, 0.95);
   pointer-events: none;
   z-index: 2;
   white-space: nowrap;
@@ -150,11 +157,11 @@
 }
 
 .counter {
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 0.7rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(243, 234, 214, 0.85);
+  color: rgba(238, 243, 251, 0.85);
   min-width: 5rem;
 }
 
@@ -162,8 +169,8 @@
   width: 74px;
   height: 74px;
   border-radius: 50%;
-  border: 4px solid rgba(243, 234, 214, 0.95);
-  background: rgba(243, 234, 214, 0.15);
+  border: 4px solid rgba(238, 243, 251, 0.95);
+  background: rgba(238, 243, 251, 0.15);
   cursor: pointer;
   padding: 0;
   transition: transform 0.1s, background 0.15s;
@@ -171,7 +178,7 @@
 
 .shutter:active:not(:disabled) {
   transform: scale(0.92);
-  background: rgba(243, 234, 214, 0.4);
+  background: rgba(238, 243, 251, 0.4);
 }
 
 .shutter:disabled {
@@ -179,14 +186,14 @@
 }
 
 .doneBtn {
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 0.68rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   padding: 0.75rem 1.1rem;
-  border: 1px solid rgba(243, 234, 214, 0.75);
+  border: 1px solid rgba(238, 243, 251, 0.75);
   background: rgba(0, 0, 0, 0.35);
-  color: rgba(243, 234, 214, 0.95);
+  color: rgba(238, 243, 251, 0.95);
   min-width: 5rem;
   cursor: pointer;
 }
@@ -212,20 +219,20 @@
 
 .errorText {
   font-family: var(--serif);
-  color: var(--paper);
+  color: var(--ink);
   font-size: 1.05rem;
   line-height: 1.6;
   max-width: 28rem;
 }
 
 .backBtn {
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   padding: 0.9rem 1.75rem;
   background: transparent;
-  color: var(--gold);
-  border: 1px solid var(--gold-border);
+  color: var(--primary);
+  border: 1px solid var(--line-2);
   cursor: pointer;
 }

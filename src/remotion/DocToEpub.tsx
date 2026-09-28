@@ -4,17 +4,23 @@ import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
 export const TOTAL_FRAMES = 96;
 export const FPS = 30;
 
+// Mirrors the --a-* tokens in src/app/globals.css. Kept as constants rather
+// than CSS variables so Remotion can render this off-DOM for video too.
 const COLORS = {
-  paper: "#f1e9d6",
-  paperShade: "#d9cdb1",
-  paperEdge: "#b8a87d",
-  ink: "#1a1612",
-  gold: "#c8a45a",
-  spine: "#6e521e",
-  phoneFrame: "#1a1612",
-  phoneBorder: "#2a2520",
-  phoneScreen: "#f1e9d6",
+  paper: "#ffffff",
+  paperShade: "#eef3fb",
+  paperEdge: "#cbd9ee",
+  ink: "#16243a",
+  accent: "#1d4ed8",
+  phoneFrame: "#12203a",
+  phoneBorder: "#2b3d5c",
+  phoneScreen: "#ffffff",
 };
+
+// On a light ground the shadows have to be a cool tint, not black.
+const SHADOW_SOFT = "rgba(21, 48, 89, 0.2)";
+const SHADOW_PAGE = "rgba(21, 48, 89, 0.22)";
+const SHADOW_PHONE = "rgba(21, 48, 89, 0.26)";
 
 const ease = Easing.bezier(0.65, 0, 0.35, 1);
 const easeOut = Easing.bezier(0.16, 1, 0.3, 1);
@@ -74,7 +80,7 @@ function FlipPage({ rotation }: { rotation: number }) {
           backfaceVisibility: "hidden",
           WebkitBackfaceVisibility: "hidden",
           borderRadius: "0 4px 4px 0",
-          boxShadow: "0 0 22px rgba(0, 0, 0, 0.28)",
+          boxShadow: `0 0 22px ${SHADOW_PAGE}`,
         }}
       >
         <PageLines count={4} seed={1} />
@@ -140,7 +146,7 @@ function BookScene({ frame }: { frame: number }) {
         opacity,
         transform: `translateY(${frame >= 88 ? lift : 0}px)`,
         perspective: 1400,
-        filter: "drop-shadow(0 14px 28px rgba(0, 0, 0, 0.5))",
+        filter: `drop-shadow(0 16px 30px ${SHADOW_SOFT})`,
       }}
     >
       <div
@@ -149,6 +155,7 @@ function BookScene({ frame }: { frame: number }) {
           inset: 0,
           background: COLORS.paper,
           borderRadius: 4,
+          boxShadow: `inset 0 0 0 1px ${COLORS.paperEdge}`,
         }}
       />
       <div
@@ -182,7 +189,7 @@ function BookScene({ frame }: { frame: number }) {
           width: 8,
           marginLeft: -4,
           background:
-            "linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.22) 50%, rgba(0,0,0,0) 100%)",
+            "linear-gradient(90deg, rgba(21,48,89,0) 0%, rgba(21,48,89,0.16) 50%, rgba(21,48,89,0) 100%)",
         }}
       />
       <div
@@ -221,11 +228,11 @@ function Lens() {
         width: "100%",
         height: "100%",
         borderRadius: "50%",
-        border: `3px solid ${COLORS.gold}`,
-        background: "rgba(200, 164, 90, 0.06)",
+        border: `3px solid ${COLORS.accent}`,
+        background: "rgba(29, 78, 216, 0.06)",
         position: "relative",
         boxShadow:
-          "0 0 36px rgba(200, 164, 90, 0.42), inset 0 0 18px rgba(200, 164, 90, 0.18)",
+          "0 0 34px rgba(29, 78, 216, 0.32), inset 0 0 18px rgba(29, 78, 216, 0.16)",
       }}
     >
       <div
@@ -233,7 +240,7 @@ function Lens() {
           position: "absolute",
           inset: 14,
           borderRadius: "50%",
-          border: `1.5px solid ${COLORS.gold}`,
+          border: `1.5px solid ${COLORS.accent}`,
           opacity: 0.45,
         }}
       />
@@ -245,7 +252,7 @@ function Lens() {
           right: 6,
           height: 1,
           marginTop: -0.5,
-          background: COLORS.gold,
+          background: COLORS.accent,
           opacity: 0.7,
         }}
       />
@@ -257,7 +264,7 @@ function Lens() {
           bottom: 6,
           width: 1,
           marginLeft: -0.5,
-          background: COLORS.gold,
+          background: COLORS.accent,
           opacity: 0.7,
         }}
       />
@@ -271,7 +278,7 @@ function Lens() {
           marginTop: -3,
           marginLeft: -3,
           borderRadius: "50%",
-          background: COLORS.gold,
+          background: COLORS.accent,
         }}
       />
     </div>
@@ -315,7 +322,7 @@ function CameraScene({ frame }: { frame: number }) {
     extrapolateRight: "clamp",
   });
 
-  const flash = interpolate(frame, [18, 20, 26], [0, 0.6, 0], {
+  const flash = interpolate(frame, [18, 20, 26], [0, 0.45, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -327,7 +334,7 @@ function CameraScene({ frame }: { frame: number }) {
         width: 240,
         height: 320,
         opacity: enterIn * exitOut,
-        filter: "drop-shadow(0 14px 28px rgba(0, 0, 0, 0.5))",
+        filter: `drop-shadow(0 16px 30px ${SHADOW_SOFT})`,
       }}
     >
       <div
@@ -337,6 +344,7 @@ function CameraScene({ frame }: { frame: number }) {
           background: COLORS.paper,
           borderRadius: 4,
           overflow: "hidden",
+          boxShadow: `inset 0 0 0 1px ${COLORS.paperEdge}`,
         }}
       >
         <PageLines count={8} seed={2} />
@@ -347,16 +355,16 @@ function CameraScene({ frame }: { frame: number }) {
             right: 0,
             top: `${scanY}%`,
             height: 2,
-            background: COLORS.gold,
+            background: COLORS.accent,
             opacity: scanOpacity,
-            boxShadow: `0 0 24px ${COLORS.gold}, 0 0 8px ${COLORS.gold}`,
+            boxShadow: `0 0 24px ${COLORS.accent}, 0 0 8px ${COLORS.accent}`,
           }}
         />
         <div
           style={{
             position: "absolute",
             inset: 0,
-            background: COLORS.paper,
+            background: COLORS.accent,
             opacity: flash,
           }}
         />
@@ -464,7 +472,7 @@ function PhoneScene({ frame }: { frame: number }) {
         height: 340,
         opacity: enterIn * exitOut,
         transform: `translateY(${lift}px)`,
-        filter: "drop-shadow(0 18px 36px rgba(0, 0, 0, 0.55))",
+        filter: `drop-shadow(0 20px 38px ${SHADOW_PHONE})`,
       }}
     >
       <div
@@ -518,9 +526,9 @@ function PhoneScene({ frame }: { frame: number }) {
           marginLeft: -13,
           marginTop: -13,
           borderRadius: "50%",
-          background: "rgba(200, 164, 90, 0.55)",
-          border: `2px solid ${COLORS.gold}`,
-          boxShadow: "0 0 20px rgba(200, 164, 90, 0.5)",
+          background: "rgba(29, 78, 216, 0.45)",
+          border: `2px solid ${COLORS.accent}`,
+          boxShadow: "0 0 20px rgba(29, 78, 216, 0.45)",
           opacity: fingerOpacity,
         }}
       />

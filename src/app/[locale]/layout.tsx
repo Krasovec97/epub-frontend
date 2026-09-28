@@ -5,11 +5,13 @@ import { getMessages } from "next-intl/server";
 import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import NavBar from "@/components/NavBar";
+import SiteFooter from "@/components/SiteFooter";
 import "../globals.css";
 
 export const metadata: Metadata = {
   title: "Pergament",
-  description: "Transform PDFs and images into clean, readable EPUB files via OCR.",
+  description:
+    "Photograph a printed book with your phone; Pergament cleans up every page and emails you a finished EPUB.",
 };
 
 export function generateStaticParams() {
@@ -34,6 +36,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <NavBar />
           {children}
+          <SiteFooter />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -210,7 +210,7 @@ export default function CoverAdjust({
     const sx = pt.x - MAGNIFIER_SAMPLE_RADIUS_PX;
     const sy = pt.y - MAGNIFIER_SAMPLE_RADIUS_PX;
     ctx.drawImage(source, sx, sy, sample, sample, 0, 0, size, size);
-    ctx.strokeStyle = "rgba(231, 190, 96, 0.95)";
+    ctx.strokeStyle = "rgba(122, 162, 255, 0.95)";
     ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.moveTo(size / 2, 0);

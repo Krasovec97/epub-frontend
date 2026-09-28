@@ -1,18 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..900,0..100;1,9..144,400..900,0..100&family=JetBrains+Mono:ital,wght@0,400..800;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..600&family=Public+Sans:wght@400;500;600;700&display=swap');
 
-/* ── Tokens ── */
+/* ── Tokens — "Blueprint" ──
+   Light cool-paper ground, one blue accent, hairlines instead of cards. */
 :root {
-  --bg:          #070605;
-  --surface:     #0e0c0a;
-  --card:        #161310;
-  --paper:       #f1e9d6;
-  --paper-mid:   #a89880;
-  --paper-faint: #292420;
-  --gold:        #c8a45a;
-  --gold-dim:    rgba(200, 164, 90, 0.09);
-  --gold-border: rgba(200, 164, 90, 0.28);
-  --serif:       'Fraunces', 'Times New Roman', Georgia, serif;
-  --mono:        'JetBrains Mono', 'Courier New', monospace;
+  /* ground & surfaces */
+  --ground:      #f4f7fb;
+  --surface:     #ffffff;
+  --surface-2:   #edf2fa;
+
+  /* ink — all three pass 4.5:1 on --ground */
+  --ink:         #0f1d33;
+  --ink-2:       #42556f;
+  --ink-3:       #5d6f8a;
+
+  /* rules */
+  --line:        #d7e1f0;
+  --line-2:      #becfe6;
+
+  /* accent */
+  --primary:      #1d4ed8;
+  --primary-deep: #153da8;
+  --primary-soft: #e4ebfb;
+  --primary-ink:  #ffffff;
+
+  /* semantic — kept separate from the accent hue */
+  --signal:      #0e7c5a;
+  --warn:        #a15c07;
+  --danger:      #c02626;
+
+  /* blueprint grid wash */
+  --grid-line:   rgba(29, 78, 216, 0.055);
+
+  /* on-dark set — the camera and cover-crop screens stay dark on purpose */
+  --dark-ground:  #0b1220;
+  --dark-ink:     #eef3fb;
+  --dark-primary: #7aa2ff;
+  --dark-line:    rgba(122, 162, 255, 0.42);
+
+  /* type */
+  --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --sans:  'Public Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --code:  ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+
+  /* elevation */
+  --shadow-panel: 0 1px 2px rgba(15, 29, 51, 0.04), 0 18px 44px -28px rgba(15, 29, 51, 0.22);
+  --shadow-pop:   0 12px 40px -12px rgba(15, 29, 51, 0.3);
+
+  /* layout */
+  --maxw: 1180px;
+  --gut:  clamp(1.25rem, 4vw, 2.5rem);
 }
 
 /* ── Reset ── */
@@ -27,23 +64,35 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--bg);
-  color: var(--paper);
-  font-family: var(--serif);
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--sans);
   font-weight: 400;
-  font-variation-settings: "SOFT" 50, "opsz" 14;
-  line-height: 1.7;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   min-height: 100dvh;
   overflow-x: hidden;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
 img,
 svg {
   display: block;
+  max-width: 100%;
 }
 
 button {
@@ -56,7 +105,7 @@ button {
 }
 
 a {
-  color: var(--gold);
+  color: var(--primary);
   text-decoration: none;
 }
 
@@ -64,7 +113,30 @@ a:hover {
   text-decoration: underline;
 }
 
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--primary-soft);
+  color: var(--ink);
+}
+
 /* ── Scrollbar ── */
-::-webkit-scrollbar           { width: 4px; }
-::-webkit-scrollbar-track     { background: var(--bg); }
-::-webkit-scrollbar-thumb     { background: var(--paper-faint); }
+::-webkit-scrollbar           { width: 10px; }
+::-webkit-scrollbar-track     { background: var(--surface-2); }
+::-webkit-scrollbar-thumb     { background: var(--line-2); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-3); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

@@ -20,20 +20,18 @@ export default function LocaleSwitcher() {
   }
 
   return (
-    <div className={styles.switcher} role="group" aria-label="Language switcher">
-      {routing.locales.map((loc, i) => (
-        <span key={loc} className={styles.item}>
-          {i > 0 && <span className={styles.sep} aria-hidden="true">/</span>}
-          <button
-            type="button"
-            className={`${styles.btn} ${loc === locale ? styles.active : ""}`}
-            onClick={() => switchLocale(loc)}
-            disabled={loc === locale}
-            aria-pressed={loc === locale}
-          >
-            {LABELS[loc]}
-          </button>
-        </span>
+    <div className={styles.switcher} role="group" aria-label="Language">
+      {routing.locales.map((loc) => (
+        <button
+          key={loc}
+          type="button"
+          className={`${styles.btn} ${loc === locale ? styles.active : ""}`}
+          onClick={() => switchLocale(loc)}
+          disabled={loc === locale}
+          aria-pressed={loc === locale}
+        >
+          {LABELS[loc]}
+        </button>
       ))}
     </div>
   );

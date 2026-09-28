@@ -20,7 +20,11 @@ export default async function ScanPage({
   const isMobile = await getIsMobile();
   if (!isMobile && !devBypass) {
     const url = await getCurrentUrl(locale === "sl" ? "/scan" : `/${locale}/scan`);
-    return <DesktopHandoff url={url} />;
+    return (
+      <main>
+        <DesktopHandoff url={url} standalone />
+      </main>
+    );
   }
 
   return (
